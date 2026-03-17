@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Developer's Field Guide</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;color:#1a1a1a;line-height:1.7;padding:0 0 60px;background:#fff}
+h1,h2,h3,h4{font-family:'Lora',serif;font-weight:600;line-height:1.2}
+code{font-family:'DM Mono',monospace;font-size:12px;background:#f5f5f3;padding:2px 6px;border-radius:4px;color:#555}
+
+.masthead{text-align:center;padding:40px 24px 32px;border-bottom:0.5px solid #e0ddd8}
+.eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#999;margin-bottom:12px}
+.masthead h1{font-size:36px;color:#1a1a1a;margin-bottom:8px}
+.masthead h1 em{font-style:italic;font-weight:400}
+.masthead p{font-size:14px;color:#777;font-style:italic;font-family:'Lora',serif;font-weight:400}
+
+.nav{display:flex;gap:0;border-bottom:0.5px solid #e0ddd8;overflow-x:auto;padding:0 24px;background:#fff;position:sticky;top:0;z-index:10}
+.nav-btn{font-size:12px;font-weight:500;color:#888;padding:12px 16px;border:none;background:none;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:color 0.15s;font-family:'DM Sans',sans-serif}
+.nav-btn:hover{color:#1a1a1a}
+.nav-btn.active{color:#1a1a1a;border-bottom-color:#1a1a1a}
+
+.page{display:none;padding:24px;max-width:860px;margin:0 auto}
+.page.active{display:block}
+
+.section-head{margin:32px 0 16px;padding-bottom:8px;border-bottom:0.5px solid #e0ddd8}
+.section-head h2{font-size:20px}
+.section-head p{font-size:13px;color:#888;font-style:italic;font-family:'Lora',serif;margin-top:4px}
+
+/* TERMS */
+.terms-list{display:flex;flex-direction:column;gap:1px}
+.term-row{display:grid;grid-template-columns:160px 1fr;background:#fff;border:0.5px solid #e0ddd8}
+.term-row:first-child{border-radius:10px 10px 0 0}
+.term-row:last-child{border-radius:0 0 10px 10px}
+.term-key{padding:12px 14px 14px;font-family:'DM Mono',monospace;font-size:11px;font-weight:500;color:#1a1a1a;background:#f9f8f6;border-right:0.5px solid #e0ddd8;line-height:1.4}
+.term-val{padding:12px 16px;font-size:13px;color:#555;line-height:1.65}
+.term-val em{display:block;margin-top:5px;font-size:12px;color:#999}
+
+/* TOOL CARDS */
+.tool-card{background:#fff;border:0.5px solid #e0ddd8;border-radius:10px;margin-bottom:10px;overflow:hidden}
+.tool-trigger{display:flex;align-items:center;gap:14px;padding:16px 20px;cursor:pointer;width:100%;text-align:left;background:none;border:none;font-family:inherit}
+.tool-trigger:hover{background:#f9f8f6}
+.tool-icon{font-size:18px;width:32px;text-align:center;flex-shrink:0}
+.tool-info{flex:1}
+.tool-name{font-family:'Lora',serif;font-size:16px;font-weight:600;color:#1a1a1a;display:block}
+.tool-tagline{font-size:12px;color:#888;margin-top:1px;display:block}
+.tool-badges{display:flex;gap:6px;margin-left:auto;align-items:center}
+.badge{font-size:10px;font-weight:500;padding:3px 8px;border-radius:20px;font-family:'DM Mono',monospace;letter-spacing:0.05em;white-space:nowrap}
+.badge-free{background:#edf7f0;color:#2d6a4f;border:0.5px solid #b7dfc8}
+.badge-paid{background:#fef8ec;color:#92600a;border:0.5px solid #f7d98b}
+.badge-inc{background:#eaf2fb;color:#1a4d8f;border:0.5px solid #b3cff0}
+.chevron{font-size:14px;color:#bbb;transition:transform 0.2s;margin-left:8px}
+
+.tool-body{display:none;padding:0 20px 20px;border-top:0.5px solid #e0ddd8}
+.tool-body.open{display:block}
+.tool-body p{font-size:13.5px;color:#555;margin:14px 0 10px;line-height:1.7}
+.tool-body h4{font-family:'Lora',serif;font-size:14px;font-weight:600;color:#1a1a1a;margin:18px 0 8px}
+
+/* FEAT LIST */
+.feat-list{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.feat-item{padding:12px 14px;background:#f9f8f6;border-radius:8px;border:0.5px solid #e0ddd8}
+.feat-item strong{display:block;font-size:13px;font-weight:500;color:#1a1a1a;margin-bottom:3px}
+.feat-item span{font-size:12.5px;color:#666}
+
+.tip-box{margin-top:12px;padding:10px 14px;background:#eaf2fb;border-radius:8px;border:0.5px solid #b3cff0}
+.tip-box p{font-size:12.5px;color:#1a4d8f;margin:0}
+.warn-box{margin-top:10px;padding:10px 14px;background:#fef8ec;border-radius:8px;border:0.5px solid #f7d98b}
+.warn-box p{font-size:12.5px;color:#92600a;margin:0}
+
+.step-list{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.step-item{display:flex;gap:12px;align-items:flex-start}
+.step-num{width:22px;height:22px;border-radius:50%;background:#f5f5f3;border:0.5px solid #ddd;font-size:11px;font-weight:500;color:#888;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;font-family:'DM Mono',monospace}
+.step-item span{font-size:13px;color:#555;line-height:1.6}
+
+/* COMMANDS */
+.commands-list{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.cmd-row{display:grid;grid-template-columns:210px 1fr;border:0.5px solid #e0ddd8;border-radius:8px;overflow:hidden}
+.cmd-code{padding:10px 12px;font-family:'DM Mono',monospace;font-size:12px;color:#1a4d8f;background:#eaf2fb;border-right:0.5px solid #b3cff0}
+.cmd-desc{padding:10px 14px;font-size:12.5px;color:#555}
+
+/* MODELS */
+.model-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.model-card{padding:14px;background:#f9f8f6;border-radius:8px;border:0.5px solid #e0ddd8}
+.model-name{font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:4px}
+.model-speed{font-size:11px;color:#999;font-family:'DM Mono',monospace;margin-bottom:8px}
+.model-use{font-size:12px;color:#666}
+
+/* WORKFLOW */
+.phase{margin-bottom:20px}
+.phase-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#999;margin-bottom:8px;padding-left:2px}
+.phase-label.phase-plan{color:#1a4d8f}
+.phase-label.phase-build{color:#2d6a4f}
+.phase-label.phase-ship{color:#92600a}
+
+.wf-steps{display:flex;flex-direction:column;gap:2px}
+.wf-step{display:grid;grid-template-columns:36px 1fr;background:#fff;border:0.5px solid #e0ddd8}
+.wf-step:first-child{border-radius:10px 10px 0 0}
+.wf-step:last-child{border-radius:0 0 10px 10px}
+.wf-step:only-child{border-radius:10px}
+
+.wf-num{display:flex;align-items:flex-start;justify-content:center;padding:16px 0 0;font-family:'DM Mono',monospace;font-size:11px;font-weight:500;color:#bbb}
+.wf-content{padding:14px 16px 14px 4px}
+.wf-title{font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:3px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.wf-desc{font-size:12.5px;color:#666;line-height:1.6}
+
+.wf-tag{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;padding:2px 7px;border-radius:20px;white-space:nowrap;letter-spacing:0.04em}
+.tag-ai{background:#eaf2fb;color:#1a4d8f;border:0.5px solid #b3cff0}
+.tag-cc{background:#edf7f0;color:#2d6a4f;border:0.5px solid #b7dfc8}
+.tag-vercel{background:#f5f5f3;color:#666;border:0.5px solid #ddd}
+.tag-opt{background:#fef8ec;color:#92600a;border:0.5px solid #f7d98b}
+
+.wf-cmd{display:inline-block;margin-top:6px;font-family:'DM Mono',monospace;font-size:11.5px;color:#2d6a4f;background:#edf7f0;border:0.5px solid #b7dfc8;padding:3px 10px;border-radius:6px}
+
+.wf-divider{display:flex;align-items:center;gap:10px;margin:12px 0 8px;padding-left:2px}
+.wf-divider-line{flex:1;height:0.5px;background:#e0ddd8}
+.wf-divider-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:#bbb;white-space:nowrap}
+
+.wf-legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:20px;padding:10px 14px;background:#f9f8f6;border-radius:8px;border:0.5px solid #e0ddd8}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:#666}
+
+@media(max-width:540px){
+  .term-row{grid-template-columns:1fr}
+  .term-key{border-right:none;border-bottom:0.5px solid #e0ddd8}
+  .cmd-row{grid-template-columns:1fr}
+  .cmd-code{border-right:none;border-bottom:0.5px solid #b3cff0}
+  .model-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="eyebrow">A plain-english reference for new builders</div>
+  <h1>The Developer's <em>Field Guide</em></h1>
+  <p>Terms, tools, and Claude features — no prior experience required</p>
+</div>
+
+<div class="nav">
+  <button class="nav-btn active" onclick="showPage('terms',this)">Dev Terms</button>
+  <button class="nav-btn" onclick="showPage('tools',this)">Your Tools</button>
+  <button class="nav-btn" onclick="showPage('claudeai',this)">claude.ai</button>
+  <button class="nav-btn" onclick="showPage('cc',this)">Claude Code</button>
+  <button class="nav-btn" onclick="showPage('models',this)">Models</button>
+  <button class="nav-btn" onclick="showPage('commands',this)">Commands</button>
+  <button class="nav-btn" onclick="showPage('workflow',this)">Workflow</button>
+</div>
+
+<!-- TERMS -->
+<div id="page-terms" class="page active">
+  <div class="section-head"><h2>Words developers use</h2><p>Plain-english translations for the jargon you'll hear constantly.</p></div>
+  <div class="terms-list">
+    <div class="term-row"><div class="term-key">Repository (Repo)</div><div class="term-val">A folder for your project that GitHub watches and saves the complete history of. Every change you make gets recorded so you can always go back.<em>Your repo might be called "my-first-app" and live at github.com/yourname/my-first-app</em></div></div>
+    <div class="term-row"><div class="term-key">Commit</div><div class="term-val">Saving a snapshot of your work with a short description of what changed. You commit after finishing a task so your progress is backed up and documented.<em>"Add homepage button" or "Fix broken login" are good commit messages.</em></div></div>
+    <div class="term-row"><div class="term-key">Branch</div><div class="term-val">A parallel version of your code where you can experiment without breaking the working version. The main branch is your live app — a feature branch is a safe sandbox.<em>Like making a copy of a document to edit, while the original stays safe.</em></div></div>
+    <div class="term-row"><div class="term-key">Push</div><div class="term-val">Sending your committed changes from your local computer up to GitHub. Once pushed, your changes are backed up in the cloud and Vercel can see them.</div></div>
+    <div class="term-row"><div class="term-key">Pull Request (PR)</div><div class="term-val">A formal request to merge changes from a branch into the main branch. Useful when collaborating. For solo work you'll often skip this and merge directly.</div></div>
+    <div class="term-row"><div class="term-key">Merge</div><div class="term-val">Combining two branches together — folding a feature branch back into main once you're happy with it. After merging, the feature is part of your live app.</div></div>
+    <div class="term-row"><div class="term-key">Deploy</div><div class="term-val">Publishing your app to the internet. Vercel handles this automatically — when you push code to the main branch on GitHub, Vercel detects the change and deploys it. Your app gets a live public URL.</div></div>
+    <div class="term-row"><div class="term-key">Frontend</div><div class="term-val">Everything the user sees and interacts with — buttons, text, colors, layouts. HTML, CSS, and JavaScript are frontend technologies.</div></div>
+    <div class="term-row"><div class="term-key">Backend</div><div class="term-val">The hidden part of an app — databases, server logic, user authentication. You don't see the backend, but it powers everything. Firebase is a backend service.</div></div>
+    <div class="term-row"><div class="term-key">API</div><div class="term-val">A way for two pieces of software to talk to each other over the internet. When your app sends a message to Claude and gets a reply, it's using Anthropic's API.<em>Like a waiter — you place an order (request), the kitchen (API) brings food (response).</em></div></div>
+    <div class="term-row"><div class="term-key">Environment Variable</div><div class="term-val">A secret value (like an API key) stored outside your code so it doesn't get shared publicly. Your code references them by name, never by value.<em>ANTHROPIC_API_KEY is an environment variable — the actual key stays hidden.</em></div></div>
+    <div class="term-row"><div class="term-key">Terminal</div><div class="term-val">A text window where you type commands directly to your computer. VS Code has a built-in terminal. Claude Code uses it to install tools, run your app locally, and push code to GitHub.</div></div>
+    <div class="term-row"><div class="term-key">Local vs Live</div><div class="term-val">Local means running on your own computer — only you can see it. Live (or "in production") means deployed and accessible to anyone on the internet. You build locally, then deploy to make it live.</div></div>
+    <div class="term-row"><div class="term-key">Context Window</div><div class="term-val">How much Claude can "remember" in a single conversation. Like short-term memory — it resets when you start a new chat. Very long conversations can fill it up.</div></div>
+    <div class="term-row"><div class="term-key">Prompt</div><div class="term-val">What you type to Claude. The better your prompt — more context, more detail — the better Claude's output. This is a genuinely learnable skill.</div></div>
+  </div>
+</div>
+
+<!-- TOOLS -->
+<div id="page-tools" class="page">
+  <div class="section-head"><h2>Your tools</h2><p>Click any tool to learn what it does and how to use it.</p></div>
+
+  <div class="tool-card">
+    <button class="tool-trigger open" onclick="toggleTool(this,'t-claudeai')">
+      <div class="tool-icon">🤖</div>
+      <div class="tool-info"><span class="tool-name">claude.ai</span><span class="tool-tagline">Your AI thinking partner — planning, writing, brainstorming</span></div>
+      <div class="tool-badges"><span class="badge badge-paid">$20/mo</span></div>
+      <span class="chevron" style="transform:rotate(180deg)">▾</span>
+    </button>
+    <div class="tool-body open" id="t-claudeai">
+      <p>Claude.ai is the chat interface where you think things through before building them. Use it to brainstorm ideas, plan features, ask questions, and get explanations. It's your thinking partner — not the place where code gets written (that's Claude Code).</p>
+      <h4>Key features</h4>
+      <div class="feat-list">
+        <div class="feat-item"><strong>Projects</strong><span>Dedicated spaces with persistent context. Upload documents and notes — Claude remembers them across every conversation in that project.</span></div>
+        <div class="feat-item"><strong>Artifacts</strong><span>When Claude creates something substantial, it appears in a live preview panel you can copy and iterate on.</span></div>
+        <div class="feat-item"><strong>Memory</strong><span>Claude remembers facts about you across conversations. Auto-enabled and builds over time.</span></div>
+        <div class="feat-item"><strong>Skills</strong><span>Custom instruction sets uploaded as zip files via Settings → Features. Available in all your conversations everywhere — not just one project.</span></div>
+        <div class="feat-item"><strong>Styles</strong><span>Set a persistent tone and format for all responses. Configure once in Settings and it applies everywhere.</span></div>
+        <div class="feat-item"><strong>Web Search</strong><span>Toggle on to let Claude search the internet in real time. It cites its sources.</span></div>
+        <div class="feat-item"><strong>File Upload</strong><span>Drag and drop PDFs, images, screenshots, documents into any chat.</span></div>
+        <div class="feat-item"><strong>Extended Thinking</strong><span>Claude shows its reasoning before answering — slower but produces noticeably better results on hard problems.</span></div>
+        <div class="feat-item"><strong>Claude Console</strong><span>A separate web tool at console.anthropic.com for testing API calls and prompts. Useful later when building apps that connect directly to Claude's API.</span></div>
+      </div>
+      <div class="tip-box"><p><strong>Best for:</strong> Planning features, understanding concepts, writing content, brainstorming, and asking "why did this break?" questions.</p></div>
+    </div>
+  </div>
+
+  <div class="tool-card">
+    <button class="tool-trigger open" onclick="toggleTool(this,'t-cc')">
+      <div class="tool-icon">⚙️</div>
+      <div class="tool-info"><span class="tool-name">Claude Code</span><span class="tool-tagline">The builder — lives inside VS Code, writes and runs your code</span></div>
+      <div class="tool-badges"><span class="badge badge-inc">included w/ Pro</span></div>
+      <span class="chevron" style="transform:rotate(180deg)">▾</span>
+    </button>
+    <div class="tool-body open" id="t-cc">
+      <p>Claude Code is the Claude extension inside VS Code. This is where actual building happens — it reads your files, writes code, runs commands in the terminal, and deploys your app. Unlike claude.ai, it has direct access to your project.</p>
+      <h4>Key features</h4>
+      <div class="feat-list">
+        <div class="feat-item"><strong>File access</strong><span>Claude Code reads, writes, and edits files in your project. It sees your entire codebase and can make changes across multiple files at once.</span></div>
+        <div class="feat-item"><strong>Terminal access</strong><span>Runs commands on your computer — installing packages, starting servers, deploying to Vercel, running Git. Asks permission before anything significant.</span></div>
+        <div class="feat-item"><strong>Slash commands</strong><span>Custom shortcuts you type to trigger automated workflows. Type / to see what's available.</span></div>
+        <div class="feat-item"><strong>Plan mode</strong><span>Ask Claude to plan what it intends to do before making any changes. Review and approve, then it executes.</span></div>
+        <div class="feat-item"><strong>CLAUDE.md</strong><span>A file inside your project that Claude reads at the start of every session. Contains rules and preferences so Claude stays consistent.</span></div>
+        <div class="feat-item"><strong>Skills</strong><span>Live in <code>~/.claude/skills/</code> on your computer. Available across all your projects automatically — no upload needed.</span></div>
+        <div class="feat-item"><strong>Plugins</strong><span>Installable extensions that add capabilities — Firebase support, security guidance, architecture tools, and more.</span></div>
+        <div class="feat-item"><strong>Markdown files</strong><span>Many Claude Code configurations — CLAUDE.md, skills, commands — use Markdown (.md files). Easy to read and edit in any text editor.</span></div>
+      </div>
+      <div class="tip-box"><p><strong>Best for:</strong> Actually writing code, building features, fixing bugs, deploying. Everything that involves touching files.</p></div>
+    </div>
+  </div>
+
+  <div class="tool-card">
+    <button class="tool-trigger" onclick="toggleTool(this,'t-vscode')">
+      <div class="tool-icon">🖥️</div>
+      <div class="tool-info"><span class="tool-name">VS Code</span><span class="tool-tagline">Your code editor — where everything happens</span></div>
+      <div class="tool-badges"><span class="badge badge-free">free</span></div>
+      <span class="chevron">▾</span>
+    </button>
+    <div class="tool-body" id="t-vscode">
+      <p>VS Code (Visual Studio Code) is the app where you'll spend most of your time. It's a code editor — like Microsoft Word, but for code. Claude Code lives inside it, the terminal is built in, and you manage all your project files here.</p>
+      <h4>Essential extensions to install</h4>
+      <div class="feat-list">
+        <div class="feat-item"><strong>Claude Code (Anthropic)</strong><span>The main one — installs the Claude panel in your sidebar. Search "Claude Code" in the Extensions tab and install the one by Anthropic.</span></div>
+        <div class="feat-item"><strong>GitLens</strong><span>Shows you who changed what and when, right inside your files. Makes Git history easy to understand without using the terminal.</span></div>
+        <div class="feat-item"><strong>Prettier</strong><span>Automatically formats your code to look clean and consistent every time you save.</span></div>
+        <div class="feat-item"><strong>Live Server</strong><span>Right-click an HTML file and open it in your browser with live reloading — every save instantly refreshes the page.</span></div>
+        <div class="feat-item"><strong>Error Lens</strong><span>Shows error messages inline in your code, right next to the problem line.</span></div>
+        <div class="feat-item"><strong>GitHub Copilot <em style="font-style:normal;font-size:11px;color:#999">(optional)</em></strong><span>AI autocomplete as you type. Separate subscription required.</span></div>
+      </div>
+      <div class="tip-box"><p><strong>Tip:</strong> Open Extensions with <code>Cmd+Shift+X</code> (Mac) or <code>Ctrl+Shift+X</code> (Windows). Search by name and click Install.</p></div>
+    </div>
+  </div>
+
+  <div class="tool-card">
+    <button class="tool-trigger" onclick="toggleTool(this,'t-github')">
+      <div class="tool-icon">🐙</div>
+      <div class="tool-info"><span class="tool-name">GitHub</span><span class="tool-tagline">Cloud storage and version control for your code</span></div>
+      <div class="tool-badges"><span class="badge badge-free">free</span></div>
+      <span class="chevron">▾</span>
+    </button>
+    <div class="tool-body" id="t-github">
+      <p>GitHub is where your code lives in the cloud. Every project is stored as a "repository" — a folder with full change history. It's your backup, your version control, and the bridge between your computer and Vercel.</p>
+      <h4>The core concepts</h4>
+      <div class="feat-list">
+        <div class="feat-item"><strong>Repository (repo)</strong><span>A project folder that GitHub tracks. Everything about your project — all files, all history — lives here. One repo per app.</span></div>
+        <div class="feat-item"><strong>Commit</strong><span>A saved snapshot of your code at a point in time, with a message describing what changed. Like checkpoints in a video game — you can always go back.</span></div>
+        <div class="feat-item"><strong>Branch</strong><span>A separate copy of your code where you can build a feature without affecting the main working version. The main branch (called <code>main</code>) is what Vercel deploys.</span></div>
+        <div class="feat-item"><strong>Push</strong><span>Sending your local commits up to GitHub. Until you push, your saved work only exists on your computer.</span></div>
+        <div class="feat-item"><strong>Pull</strong><span>Downloading changes from GitHub to your local computer. Useful if you've been working on another machine.</span></div>
+        <div class="feat-item"><strong>Pull Request (PR)</strong><span>A formal way to ask for a branch to be merged into main. In solo work you'll rarely use these, but they're essential for teams.</span></div>
+        <div class="feat-item"><strong>Merge</strong><span>Combining a branch into another — typically folding your feature branch into main when it's ready.</span></div>
+        <div class="feat-item"><strong>Push to deploy</strong><span>When you push code to your main branch on GitHub, Vercel detects the change and automatically deploys your app. Push, and it's live within a minute or two.</span></div>
+      </div>
+      <div class="tip-box"><p><strong>The everyday flow:</strong> Make changes → commit with a message → push to GitHub → Vercel auto-deploys. Claude Code handles all of this for you.</p></div>
+    </div>
+  </div>
+
+  <div class="tool-card">
+    <button class="tool-trigger" onclick="toggleTool(this,'t-vercel')">
+      <div class="tool-icon">▲</div>
+      <div class="tool-info"><span class="tool-name">Vercel</span><span class="tool-tagline">Publishes your app to the internet automatically</span></div>
+      <div class="tool-badges"><span class="badge badge-free">free tier</span></div>
+      <span class="chevron">▾</span>
+    </button>
+    <div class="tool-body" id="t-vercel">
+      <p>Vercel watches your GitHub repository and automatically publishes your app to the internet every time you push code. You get a real URL, HTTPS, and global fast loading — all free on the starter plan.</p>
+      <h4>How it works</h4>
+      <div class="step-list">
+        <div class="step-item"><div class="step-num">1</div><span>Connect your GitHub repo to Vercel once during setup</span></div>
+        <div class="step-item"><div class="step-num">2</div><span>Every push to <code>main</code> triggers an automatic deployment</span></div>
+        <div class="step-item"><div class="step-num">3</div><span>Vercel builds and publishes your app in about 30–60 seconds</span></div>
+        <div class="step-item"><div class="step-num">4</div><span>Your live app is at a <code>yourapp.vercel.app</code> URL (or a custom domain)</span></div>
+      </div>
+      <h4>Key concepts</h4>
+      <div class="feat-list">
+        <div class="feat-item"><strong>Preview deployments</strong><span>Every push to a non-main branch gets its own temporary URL so you can test changes live before merging.</span></div>
+        <div class="feat-item"><strong>Environment variables</strong><span>Where you store secret values like API keys. Set them in the Vercel dashboard — never put secrets in your code files.</span></div>
+        <div class="feat-item"><strong>Serverless functions</strong><span>Small pieces of backend code that run on Vercel's servers. Any file in an <code>api/</code> folder becomes a function with its own URL.</span></div>
+        <div class="feat-item"><strong>Custom domains</strong><span>Once you buy a domain, connect it to Vercel in a few clicks. <code>myapp.vercel.app</code> becomes <code>myapp.com</code>.</span></div>
+        <div class="feat-item"><strong>Build logs</strong><span>If a deployment fails, Vercel shows you exactly what went wrong in the Functions tab of your dashboard.</span></div>
+      </div>
+      <div class="tip-box"><p><strong>The deploy command:</strong> <code>vercel --prod</code> forces an immediate production deployment. But normally just push to GitHub — Vercel handles it.</p></div>
+    </div>
+  </div>
+
+  <div class="tool-card">
+    <button class="tool-trigger" onclick="toggleTool(this,'t-cowork')">
+      <div class="tool-icon">🖱️</div>
+      <div class="tool-info"><span class="tool-name">Cowork + Claude in Chrome</span><span class="tool-tagline">Desktop automation and browser agent — Claude that does things, not just talks</span></div>
+      <div class="tool-badges"><span class="badge badge-inc">included w/ Pro</span></div>
+      <span class="chevron">▾</span>
+    </button>
+    <div class="tool-body" id="t-cowork">
+      <p>Cowork and Claude in Chrome are two tools that work together as an automation layer. Instead of Claude telling you how to do something, these tools let Claude actually do it — on your computer and in your browser.</p>
+
+      <h4>Cowork — Claude on your desktop</h4>
+      <p style="margin-top:8px">Cowork is a mode inside the Claude desktop app (separate from the regular chat). You give Claude access to specific folders on your computer and describe a task — Claude reads your files, does the work, and produces finished outputs. It runs in an isolated virtual machine so it can only see what you explicitly allow.</p>
+      <div class="feat-list">
+        <div class="feat-item"><strong>File access</strong><span>Claude can read, edit, and create files in folders you specify — Word docs, PDFs, spreadsheets, text files. It can't touch anything outside those folders.</span></div>
+        <div class="feat-item"><strong>Finished outputs</strong><span>Unlike regular chat where Claude describes what to do, Cowork produces actual files — a formatted Word doc, an Excel workbook, a PowerPoint deck — ready to use.</span></div>
+        <div class="feat-item"><strong>Connectors</strong><span>Can pull in context from tools like Slack, Notion, Figma, Google Drive, and more — so Claude has the full picture before it starts working.</span></div>
+        <div class="feat-item"><strong>Scheduled tasks</strong><span>Set tasks to run automatically on a schedule — daily, weekly, monthly. Set it once and Claude handles it from there.</span></div>
+        <div class="feat-item"><strong>Plan before acting</strong><span>Before making changes, Cowork shows you exactly what it plans to do and waits for your approval. You're always in control.</span></div>
+      </div>
+
+      <h4>Claude in Chrome — Claude in your browser</h4>
+      <p style="margin-top:8px">A Chrome extension that puts Claude in a sidebar while you browse. Claude can see what you see on any page and take actions — clicking buttons, filling forms, extracting data, navigating between pages. Available in beta on all paid plans including Pro.</p>
+      <div class="feat-list">
+        <div class="feat-item"><strong>Browser automation</strong><span>Claude can navigate websites, fill in forms, click buttons, and complete multi-step tasks across multiple tabs — all through natural conversation in the sidebar.</span></div>
+        <div class="feat-item"><strong>Record a workflow</strong><span>Do a task yourself once while Claude watches, and Claude learns the steps. Next time, just ask and Claude repeats it automatically.</span></div>
+        <div class="feat-item"><strong>Scheduled browser tasks</strong><span>Set recurring browser tasks — "check this page every morning and summarize what changed." Claude runs them on schedule without you being there.</span></div>
+        <div class="feat-item"><strong>Built-in platform knowledge</strong><span>Claude already knows how to navigate Gmail, Google Calendar, Google Docs, Slack, and GitHub without extra setup.</span></div>
+      </div>
+
+      <h4>Using them together</h4>
+      <div class="feat-list">
+        <div class="feat-item"><strong>Web research → finished document</strong><span>Claude in Chrome visits websites and gathers information, then Cowork compiles it into a formatted PowerPoint, Word doc, or Excel workbook — no copy-pasting.</span></div>
+        <div class="feat-item"><strong>Research + analysis</strong><span>Claude visits competitor sites and pulls pricing and features, then Cowork turns everything into a formatted comparison report ready to present.</span></div>
+        <div class="feat-item"><strong>For developers: Chrome + Claude Code</strong><span>Build something in Claude Code, then Claude in Chrome opens your local server, tests it in a real browser, reads console errors, and reports back. The whole build-test-fix loop without switching windows.</span></div>
+      </div>
+
+      <h4>How to set it up</h4>
+      <div class="step-list">
+        <div class="step-item"><div class="step-num">1</div><span>Install the Claude desktop app from claude.ai if you haven't already</span></div>
+        <div class="step-item"><div class="step-num">2</div><span>In the desktop app, switch from Chat to <strong>Cowork</strong> mode using the toggle at the top</span></div>
+        <div class="step-item"><div class="step-num">3</div><span>For Claude in Chrome: go to the Chrome Web Store, search "Claude," and install the extension by Anthropic</span></div>
+        <div class="step-item"><div class="step-num">4</div><span>Sign in with your Claude account — the same credentials you use on claude.ai</span></div>
+        <div class="step-item"><div class="step-num">5</div><span>Pin the extension to your Chrome toolbar (puzzle piece icon → thumbtack next to "Claude")</span></div>
+        <div class="step-item"><div class="step-num">6</div><span>In Cowork settings, grant access only to the specific folders you want Claude to work with</span></div>
+      </div>
+
+      <div class="warn-box"><p><strong>Safety note:</strong> Both tools are in beta. Only give Claude access to folders with files you're comfortable it seeing. Don't point it at folders with passwords, financial records, or sensitive personal documents. Always review Claude's plan before approving significant actions.</p></div>
+      <div class="tip-box"><p><strong>Pro plan note:</strong> Claude in Chrome on Pro is currently limited to the Haiku model (fast but less capable). Max, Team, and Enterprise plans can choose Sonnet or Opus for browser tasks.</p></div>
+    </div>
+  </div>
+
+  <div class="tool-card">
+    <button class="tool-trigger" onclick="toggleTool(this,'t-firebase')">
+      <div class="tool-icon">🔥</div>
+      <div class="tool-info"><span class="tool-name">Firebase</span><span class="tool-tagline">Google's backend — data storage, auth, real-time sync</span></div>
+      <div class="tool-badges"><span class="badge badge-free">free tier</span></div>
+      <span class="chevron">▾</span>
+    </button>
+    <div class="tool-body" id="t-firebase">
+      <p>Firebase is Google's backend platform. When your app needs to store data that persists between visits, sync across devices, or authenticate users, Firebase handles it — no server required.</p>
+      <div class="warn-box"><p>Not every app needs Firebase. If you're building a simple front-end with no user data or logins, skip it for now.</p></div>
+      <h4>Key services</h4>
+      <div class="feat-list">
+        <div class="feat-item"><strong>Firestore (database)</strong><span>A real-time database that stores your app's data. Changes sync instantly to all connected browsers — no refresh needed.</span></div>
+        <div class="feat-item"><strong>Authentication</strong><span>Handles user sign-in — email/password, Google login, GitHub login, etc. Firebase does all the security and session management for you.</span></div>
+        <div class="feat-item"><strong>Storage</strong><span>Cloud storage for files — images, videos, PDFs uploaded by users.</span></div>
+        <div class="feat-item"><strong>Security rules</strong><span>Rules that control who can read or write what data. Critically important — without rules, anyone can read all your data. Claude can help you write these.</span></div>
+      </div>
+      <h4>How to connect it</h4>
+      <div class="step-list">
+        <div class="step-item"><div class="step-num">1</div><span>Create a project at firebase.google.com</span></div>
+        <div class="step-item"><div class="step-num">2</div><span>Get your config object (a small block of keys) from the Firebase dashboard</span></div>
+        <div class="step-item"><div class="step-num">3</div><span>Tell Claude Code you want Firebase — it handles the integration</span></div>
+        <div class="step-item"><div class="step-num">4</div><span>Add your Firebase keys as environment variables in Vercel so they stay secret</span></div>
+      </div>
+      <div class="tip-box"><p><strong>Free tier note:</strong> The free "Spark" plan is more than enough for personal projects.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- CLAUDE.AI TAB -->
+<div id="page-claudeai" class="page">
+  <div class="section-head"><h2>claude.ai features</h2><p>What the chat interface can do beyond just answering questions.</p></div>
+  <div class="feat-list">
+    <div class="feat-item"><strong>Projects</strong><span>Dedicated spaces where Claude keeps persistent context across all conversations. Upload documents and notes — Claude references them automatically in every chat within that project.</span></div>
+    <div class="feat-item"><strong>Artifacts</strong><span>When Claude creates something substantial — a web page, a component, a document — it appears in a special preview panel. You can see it rendered live, copy it, and iterate on it right in the chat.</span></div>
+    <div class="feat-item"><strong>Memory</strong><span>Claude remembers facts about you across conversations — your name, what you're building, your preferences. Auto-enabled and builds over time. View and edit what Claude remembers in Settings.</span></div>
+    <div class="feat-item"><strong>Skills</strong><span>Custom instruction sets uploaded as zip files via Settings → Features. Once uploaded, they're globally available across all your claude.ai conversations — not limited to one project.</span></div>
+    <div class="feat-item"><strong>Styles</strong><span>Set a persistent communication style for Claude's responses. Set it once in Settings → Styles and it applies to all conversations.</span></div>
+    <div class="feat-item"><strong>Web Search</strong><span>Toggle on to let Claude search the internet in real time. Useful for current documentation, recent news, or anything that might have changed recently. Claude cites its sources.</span></div>
+    <div class="feat-item"><strong>File Upload</strong><span>Drag and drop files directly into any chat — PDFs, images, screenshots, spreadsheets. Claude reads and analyzes them.</span></div>
+    <div class="feat-item"><strong>Extended Thinking</strong><span>When toggled on, Claude shows its reasoning before answering. Slower and uses more of your message quota, but produces noticeably better results on hard problems.</span></div>
+    <div class="feat-item"><strong>Research Mode</strong><span>A deep research feature that searches the web extensively and produces long-form reports with citations. Takes several minutes to run.</span></div>
+    <div class="feat-item"><strong>Claude Console</strong><span>A separate tool at console.anthropic.com for testing prompts and API calls directly. For when you start building apps that call Claude's API from your own code.</span></div>
+  </div>
+</div>
+
+<!-- CLAUDE CODE TAB -->
+<div id="page-cc" class="page">
+  <div class="section-head"><h2>Claude Code features</h2><p>What the VS Code extension can do that the chat interface can't.</p></div>
+  <div class="feat-list">
+    <div class="feat-item"><strong>File access</strong><span>Claude Code reads, writes, and edits the files in your project folder. It sees your entire codebase and can make coordinated changes across multiple files at once.</span></div>
+    <div class="feat-item"><strong>Terminal access</strong><span>Runs commands in the terminal on your behalf — installing packages, starting servers, deploying to Vercel, running Git. It asks for your permission before doing anything significant.</span></div>
+    <div class="feat-item"><strong>Slash commands</strong><span>Custom shortcuts you type in the Claude Code chat to trigger automated multi-step workflows. They're stored as <code>.md</code> files in a commands folder. Type <code>/</code> to see everything available.</span></div>
+    <div class="feat-item"><strong>Plan mode</strong><span>Before Claude Code makes changes, ask it to plan first — a step-by-step breakdown of what it intends to do. Review and approve, then it executes.</span></div>
+    <div class="feat-item"><strong>CLAUDE.md</strong><span>A special file inside your project folder that Claude reads at the start of every session. Contains rules, preferences, and background about your project.</span></div>
+    <div class="feat-item"><strong>Skills</strong><span>Live as folders in <code>~/.claude/skills/</code> on your computer. Available across all projects automatically. Each skill has a <code>SKILL.md</code> file that teaches Claude a reusable technique or workflow.</span></div>
+    <div class="feat-item"><strong>Plugins</strong><span>Installable extensions that add new capabilities — Firebase support, security tools, architecture guidance, and more.</span></div>
+    <div class="feat-item"><strong>Markdown files (.md)</strong><span>Much of how Claude Code is configured — CLAUDE.md, skills, commands — uses Markdown, a simple text formatting system. Easy to read and edit in any text editor.</span></div>
+    <div class="feat-item"><strong>Spec Kit</strong><span>A structured workflow (installed as slash commands) that takes you from idea to built feature: describe it → spec it → plan it → build it.</span></div>
+    <div class="feat-item"><strong>Context compaction</strong><span>When a conversation in Claude Code gets very long, it automatically summarizes earlier parts to make room for new context. Normal and expected.</span></div>
+  </div>
+</div>
+
+<!-- MODELS TAB -->
+<div id="page-models" class="page">
+  <div class="section-head"><h2>Choosing a model</h2><p>Claude comes in different versions with different speed and power tradeoffs.</p></div>
+  <div class="model-grid">
+    <div class="model-card">
+      <div class="model-name">Sonnet</div>
+      <div class="model-speed">Fast ⚡ — default</div>
+      <div class="model-use">The right choice for almost everything — writing code, fixing bugs, answering questions. Start here and only switch if needed.</div>
+    </div>
+    <div class="model-card">
+      <div class="model-name">Opus</div>
+      <div class="model-speed">Slower 🧠 — most powerful</div>
+      <div class="model-use">For hard problems that need deep reasoning — complex architecture decisions, tricky bugs, important final reviews. Use sparingly.</div>
+    </div>
+    <div class="model-card">
+      <div class="model-name">Haiku</div>
+      <div class="model-speed">Fastest ⚡⚡ — lightest</div>
+      <div class="model-use">Simple, quick tasks. Not as capable, but very fast. You'll rarely need to choose this manually.</div>
+    </div>
+  </div>
+  <div class="tip-box" style="margin-top:16px"><p><strong>Practical rule:</strong> Leave it on Sonnet for everyday building. Switch to Opus when you're stuck on something hard or making a big architectural decision.</p></div>
+</div>
+
+<!-- COMMANDS TAB -->
+<div id="page-commands" class="page">
+  <div class="section-head"><h2>Key slash commands</h2><p>Type these in Claude Code to trigger automated workflows.</p></div>
+  <div class="commands-list">
+    <div class="cmd-row"><div class="cmd-code">/starter</div><div class="cmd-desc">Run once to finish setting up your environment. Installs tools, connects GitHub and Vercel. Run this first.</div></div>
+    <div class="cmd-row"><div class="cmd-code">/new-project</div><div class="cmd-desc">Start a new app from scratch. Sets up the folder structure, GitHub repo, and Vercel connection automatically.</div></div>
+    <div class="cmd-row"><div class="cmd-code">/constitution</div><div class="cmd-desc">Sets the values and principles Claude follows for this project — tone, code style, how decisions get made. Run before /specify.</div></div>
+    <div class="cmd-row"><div class="cmd-code">/specify</div><div class="cmd-desc">Describe a feature you want in plain English. Claude turns it into a proper specification document.</div></div>
+    <div class="cmd-row"><div class="cmd-code">/clarify</div><div class="cmd-desc">Claude asks questions to fill in any gaps in the specification before planning starts.</div></div>
+    <div class="cmd-row"><div class="cmd-code">/plan</div><div class="cmd-desc">Converts the specification into a step-by-step technical plan you can review before any code is written.</div></div>
+    <div class="cmd-row"><div class="cmd-code">/tasks</div><div class="cmd-desc">Breaks the plan into a prioritized list of discrete tasks. Helps track progress on bigger features.</div></div>
+    <div class="cmd-row"><div class="cmd-code">/analyze</div><div class="cmd-desc">Reviews the plan against your existing codebase to spot conflicts or things to watch out for before building.</div></div>
+    <div class="cmd-row"><div class="cmd-code">/implement</div><div class="cmd-desc">Executes the plan — Claude writes the code. Only run after reviewing and approving the plan.</div></div>
+    <div class="cmd-row"><div class="cmd-code">/update-docs</div><div class="cmd-desc">Updates your project documentation after building or changing something. Good habit after every feature.</div></div>
+    <div class="cmd-row"><div class="cmd-code">/update-claude-md</div><div class="cmd-desc">Refreshes the CLAUDE.md file with current project context so Claude stays accurate as your app evolves.</div></div>
+  </div>
+</div>
+
+<!-- WORKFLOW TAB -->
+<div id="page-workflow" class="page">
+  <div class="section-head"><h2>Building a new project</h2><p>The full workflow from first idea to live website — step by step.</p></div>
+
+  <div class="wf-legend">
+    <div class="legend-item"><span class="wf-tag tag-ai">claude.ai</span> In the browser chat</div>
+    <div class="legend-item"><span class="wf-tag tag-cc">Claude Code</span> In VS Code</div>
+    <div class="legend-item"><span class="wf-tag tag-vercel">vercel.com</span> In the browser</div>
+    <div class="legend-item"><span class="wf-tag tag-opt">optional</span> Can skip</div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-label phase-plan">Phase 1 — Plan your idea</div>
+    <div class="wf-steps">
+
+      <div class="wf-step">
+        <div class="wf-num">1</div>
+        <div class="wf-content">
+          <div class="wf-title">Create a new Project <span class="wf-tag tag-ai">claude.ai</span></div>
+          <div class="wf-desc">Go to claude.ai and click "New Project" in the left sidebar. Give it a name. This creates a persistent workspace where Claude will remember everything about your app across all your planning conversations.</div>
+        </div>
+      </div>
+
+      <div class="wf-step">
+        <div class="wf-num">2</div>
+        <div class="wf-content">
+          <div class="wf-title">Start a chat and invoke the brainstorming skill <span class="wf-tag tag-ai">claude.ai</span></div>
+          <div class="wf-desc">Open a new chat inside your Project. Describe what you want to build in plain English — no need to be technical. Then ask Claude to use the brainstorming skill. Claude will start asking questions to flesh out the idea.</div>
+        </div>
+      </div>
+
+      <div class="wf-step">
+        <div class="wf-num">3</div>
+        <div class="wf-content">
+          <div class="wf-title">Refine the idea through conversation <span class="wf-tag tag-ai">claude.ai</span></div>
+          <div class="wf-desc">Go back and forth with Claude until the idea feels solid — features, who it's for, what problems it solves, what it should look like. The more you refine here, the smoother the building phase will be.</div>
+        </div>
+      </div>
+
+      <div class="wf-step">
+        <div class="wf-num">4</div>
+        <div class="wf-content">
+          <div class="wf-title">Generate the Spec Kit prompts <span class="wf-tag tag-ai">claude.ai</span></div>
+          <div class="wf-desc">When you're happy with the idea, ask Claude to use the implementation prompt writing skill. It will produce two ready-to-paste prompts: one for <code>/constitution</code> and one for <code>/specify</code>. Copy both — you'll use them in the next phase.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="wf-divider"><div class="wf-divider-line"></div><div class="wf-divider-label">Switch to VS Code</div><div class="wf-divider-line"></div></div>
+
+  <div class="phase">
+    <div class="phase-label phase-build">Phase 2 — Set up and build</div>
+    <div class="wf-steps">
+
+      <div class="wf-step">
+        <div class="wf-num">5</div>
+        <div class="wf-content">
+          <div class="wf-title">Create the project <span class="wf-tag tag-cc">Claude Code</span></div>
+          <div class="wf-desc">Open VS Code, open the Claude Code panel, and type <code>/new-project</code>. Claude Code will create your project folder, set up the file structure, create a GitHub repository, and connect it to Vercel — all automatically.</div>
+          <div class="wf-cmd">/new-project</div>
+        </div>
+      </div>
+
+      <div class="wf-step">
+        <div class="wf-num">6</div>
+        <div class="wf-content">
+          <div class="wf-title">Paste the /constitution prompt <span class="wf-tag tag-cc">Claude Code</span></div>
+          <div class="wf-desc">Paste the first prompt you copied from claude.ai. This sets the foundational rules and principles Claude will follow throughout the whole project: code style, how to make decisions, what to avoid.</div>
+        </div>
+      </div>
+
+      <div class="wf-step">
+        <div class="wf-num">7</div>
+        <div class="wf-content">
+          <div class="wf-title">Paste the /specify prompt <span class="wf-tag tag-cc">Claude Code</span></div>
+          <div class="wf-desc">Paste the second prompt. This turns your refined idea into a formal specification document that Claude Code will use as its blueprint for everything it builds.</div>
+        </div>
+      </div>
+
+      <div class="wf-step">
+        <div class="wf-num">8</div>
+        <div class="wf-content">
+          <div class="wf-title">Run the remaining Spec Kit steps <span class="wf-tag tag-cc">Claude Code</span></div>
+          <div class="wf-desc">Work through the rest of the Spec Kit sequence one at a time. Review what Claude produces at each step before moving to the next — these are your checkpoints.</div>
+          <div style="display:flex;flex-direction:column;gap:5px;margin-top:10px">
+            <div style="display:flex;gap:8px;align-items:center"><div class="wf-cmd">/clarify</div><span style="font-size:12px;color:#999">Claude asks questions to fill gaps in the spec</span></div>
+            <div style="display:flex;gap:8px;align-items:center"><div class="wf-cmd">/plan</div><span style="font-size:12px;color:#999">Creates a step-by-step technical plan — read it carefully</span></div>
+            <div style="display:flex;gap:8px;align-items:center"><div class="wf-cmd">/tasks</div><span style="font-size:12px;color:#999">Breaks the plan into a prioritized task list</span></div>
+            <div style="display:flex;gap:8px;align-items:center"><div class="wf-cmd">/analyze</div><span style="font-size:12px;color:#999">Reviews the plan for potential issues before building</span></div>
+            <div style="display:flex;gap:8px;align-items:center"><div class="wf-cmd">/implement</div><span style="font-size:12px;color:#999">Writes the actual code — only run after approving the plan</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wf-step">
+        <div class="wf-num">9</div>
+        <div class="wf-content">
+          <div class="wf-title">Test locally <span class="wf-tag tag-opt">optional</span></div>
+          <div class="wf-desc">Claude Code will give you a localhost address (usually <code>http://localhost:3000</code> or similar). Open it in your browser to see and test your app running on your own computer before it goes live. Good for catching obvious issues early.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="wf-divider"><div class="wf-divider-line"></div><div class="wf-divider-label">Go live</div><div class="wf-divider-line"></div></div>
+
+  <div class="phase">
+    <div class="phase-label phase-ship">Phase 3 — Ship it</div>
+    <div class="wf-steps">
+
+      <div class="wf-step">
+        <div class="wf-num">10</div>
+        <div class="wf-content">
+          <div class="wf-title">Connect your repo to Vercel <span class="wf-tag tag-vercel">vercel.com</span></div>
+          <div class="wf-desc">Go to vercel.com and log in. Click "Add New Project," then select your GitHub repository from the list. Vercel will detect your project type automatically. Click Deploy.</div>
+        </div>
+      </div>
+
+      <div class="wf-step">
+        <div class="wf-num">11</div>
+        <div class="wf-content">
+          <div class="wf-title">Commit and push <span class="wf-tag tag-cc">Claude Code</span></div>
+          <div class="wf-desc">Back in Claude Code, ask it to commit your work and push to GitHub — something like: "Commit everything and push to main." Claude Code will write a commit message, commit all the files, and push them up. This triggers Vercel.</div>
+        </div>
+      </div>
+
+      <div class="wf-step">
+        <div class="wf-num">12</div>
+        <div class="wf-content">
+          <div class="wf-title">Watch it deploy and open your site <span class="wf-tag tag-vercel">vercel.com</span></div>
+          <div class="wf-desc">Switch back to vercel.com. You'll see your deployment in progress — a spinning indicator that takes 30–90 seconds. When it turns green, click the URL Vercel gives you. That's your live website, accessible to anyone in the world.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="tip-box" style="margin-top:20px"><p><strong>From here on:</strong> Every time you make changes, just ask Claude Code to commit and push. Vercel redeploys automatically every time. For new features, start at step 2 (brainstorm in claude.ai), skip the setup steps, and pick up at step 6 (paste prompts into Claude Code).</p></div>
+
+</div>
+
+<script>
+function showPage(id,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+function toggleTool(btn,bodyId){
+  var body=document.getElementById(bodyId);
+  var isOpen=body.classList.contains('open');
+  body.classList.toggle('open',!isOpen);
+  btn.classList.toggle('open',!isOpen);
+  var chev=btn.querySelector('.chevron');
+  if(chev)chev.style.transform=isOpen?'':'rotate(180deg)';
+}
+</script>
+</body>
+</html>

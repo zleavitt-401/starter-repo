@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# Python cache (from ui-ux-pro-max skill)
+__pycache__/
+*.pyc
+
+# Editor files
+*.swp
+*.swo
+*~
+
+# Claude memory (personal to each user)
+memory/
