@@ -1,3 +1,7 @@
+---
+description: Update constitution and CLAUDE.md with current project state
+---
+
 Review the current project state and update both `.specify/constitution.md` and `CLAUDE.md`.
 
 CONSTITUTION — Update architectural principles, constraints, and quality standards based on:

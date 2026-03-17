@@ -1,3 +1,7 @@
+---
+description: Create a new project with GitHub repo and Spec Kit setup
+---
+
 Ask the user: "What would you like to name your project?"
 
 Wait for their response, then use that name as the project name throughout.

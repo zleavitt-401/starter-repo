@@ -60,6 +60,8 @@ git clone https://github.com/zleavitt-401/starter-repo ~/.claude
 
 > **What this does:** It downloads this entire repo into a hidden folder called `.claude` in your home directory. This is the exact folder where Claude Code looks for commands and skills. That's why it has to go here — if you put it somewhere else, Claude won't find it.
 
+> **If you get an error saying the folder already exists:** You may already have a `~/.claude` folder from a previous Claude Code session. Back it up first by running `mv ~/.claude ~/.claude-backup` in the terminal, then try the clone command again. After cloning, you can copy any personal files from the backup into the new folder.
+
 > **Windows users:** The command is slightly different. Use this instead:
 > ```
 > git clone https://github.com/zleavitt-401/starter-repo %USERPROFILE%\.claude
@@ -142,6 +144,10 @@ cd ~/.claude && git pull
 ```
 
 That's it. New commands and skills will be available immediately in Claude Code.
+
+> **If git pull gives an error about "divergent branches":** Run `cd ~/.claude && git pull --rebase` instead. This happens rarely and is harmless.
+
+> **Important:** Don't edit the files that came with this repo (commands, skills, etc.). If you change a repo file and then run `git pull`, Git may ask you to resolve a conflict — which is confusing. Instead, create your own new files (see below).
 
 ---
 

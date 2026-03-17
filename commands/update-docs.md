@@ -1,3 +1,7 @@
+---
+description: Update project documentation after implementing a feature
+---
+
 Update relevant markdown files to document the feature just implemented.
 
 ANALYZE: Review the changes made and identify which documentation files need updates (README.md, setup guides, feature docs, etc.)
