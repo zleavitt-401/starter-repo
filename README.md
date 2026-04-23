@@ -21,6 +21,12 @@ This repo is designed to be cloned once to a special folder on your computer. Af
 
 Follow every step in order. If something doesn't make sense, read it again slowly — these instructions are written to be followed literally.
 
+### Helpful Tips
+
+- If you're ever confused, unsure, or something isn't working, just describe what you see and ask Claude
+- Screenshots are extremely useful — if a dialogue pops up requiring a decision, take a screenshot and show Claude. It'll explain and advise
+- To show Claude text on your screen, dropping a screenshot into the chat is often quicker than copy/pasting
+
 ### Step 1: Create a Claude account
 
 1. Go to [claude.ai](https://claude.ai)
@@ -29,7 +35,7 @@ Follow every step in order. If something doesn't make sense, read it again slowl
 
 ### Step 2: Install VS Code
 
-VS Code is the app where you'll write code and talk to Claude.
+VS Code is an IDE (Integrated Development Environment) — a free app where you write and manage code, and talk to Claude.
 
 1. Go to [code.visualstudio.com](https://code.visualstudio.com)
 2. Click the big download button — it will detect your computer type automatically
@@ -118,7 +124,7 @@ Type `/new-project` in Claude Code. It will create a new app folder, set up GitH
 Type `/` in Claude Code to see every command available. The most important ones:
 
 - `/new-project` — start a new app
-- `/constitution` → `/specify` → `/plan` → `/implement` — the full build workflow
+- **Spec Kit** — a structured workflow for planning and building features with Claude — use `/constitution` → `/specify` → `/plan` → `/implement`
 - `/update-docs` — update your project's documentation after making changes
 
 ### Read the field guide
