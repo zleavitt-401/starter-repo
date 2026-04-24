@@ -23,7 +23,7 @@ Follow every step in order. If something doesn't make sense, read it again slowl
 
 ### Helpful Tips
 
-- If you're ever confused, unsure, or something isn't working, just describe what you see and ask Claude
+- If you're ever confused, unsure, or something isn't working, just ask Claude
 - Screenshots are extremely useful — if a dialogue pops up requiring a decision, take a screenshot and show Claude. It'll explain and advise
 - To show Claude text on your screen, dropping a screenshot into the chat is often quicker than copy/pasting
 
