@@ -19,7 +19,7 @@ This repo is designed to be cloned once to a special folder on your computer. Af
 
 ## Setup — start here
 
-Follow every step in order. If something doesn't make sense, read it again slowly — these instructions are written to be followed literally.
+Follow every step in order — these instructions are written to be followed literally.
 
 ### Helpful Tips
 
