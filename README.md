@@ -19,11 +19,11 @@ This repo is designed to be cloned once to a special folder on your computer. Af
 
 ## Setup — start here
 
-Follow every step in order. If something doesn't make sense, read it again slowly — these instructions are written to be followed literally.
+Follow every step in order — these instructions are written to be followed literally.
 
 ### Helpful Tips
 
-- If you're ever confused, unsure, or something isn't working, just describe what you see and ask Claude
+- If you're ever confused, unsure, or something isn't working, just ask Claude
 - Screenshots are extremely useful — if a dialogue pops up requiring a decision, take a screenshot and show Claude. It'll explain and advise
 - To show Claude text on your screen, dropping a screenshot into the chat is often quicker than copy/pasting
 
