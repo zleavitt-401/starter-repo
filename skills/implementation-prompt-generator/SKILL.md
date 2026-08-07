@@ -176,7 +176,7 @@ Here's your Claude Code prompt, ready to paste:
 [generated prompt]
 ```
 
-**Next step:** Paste this into Claude Code in VS Code and implement.
+**Next step:** Paste this into Claude Code and implement.
 ```
 
 ---
@@ -276,7 +276,7 @@ Here are your Spec Kit prompts, ready for Claude Code:
 ```
 
 **Next Steps:**
-1. Open your project in VS Code with Claude Code
+1. Open your project in Claude Code (the Claude app's Code tab, or VS Code)
 2. If new project: paste /speckit.constitution first
 3. Paste the /speckit.specify prompt
 4. Use /speckit.plan and /speckit.tasks to continue
@@ -488,7 +488,7 @@ Here are your Agent Teams Spec Kit prompts, ready for Claude Code:
 ```
 
 **Next Steps:**
-1. Open your project in VS Code with Claude Code extension
+1. Open your project in Claude Code (the Claude app's Code tab, or VS Code)
 2. If new project: paste /speckit.constitution first
 3. Paste the /speckit.specify prompt — Claude Code will handle delegate mode,
    team creation, and task assignment automatically after /speckit.plan and

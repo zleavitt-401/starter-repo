@@ -52,6 +52,7 @@ code{font-family:'DM Mono',monospace;font-size:12px;background:#f5f5f3;padding:2
 .badge-free{background:#edf7f0;color:#2d6a4f;border:0.5px solid #b7dfc8}
 .badge-paid{background:#fef8ec;color:#92600a;border:0.5px solid #f7d98b}
 .badge-inc{background:#eaf2fb;color:#1a4d8f;border:0.5px solid #b3cff0}
+.badge-opt{background:#fef8ec;color:#92600a;border:0.5px solid #f7d98b}
 .chevron{font-size:14px;color:#bbb;transition:transform 0.2s;margin-left:8px}
 
 .tool-body{display:none;padding:0 20px 20px;border-top:0.5px solid #e0ddd8}
@@ -163,7 +164,7 @@ code{font-family:'DM Mono',monospace;font-size:12px;background:#f5f5f3;padding:2
     <div class="term-row"><div class="term-key">Backend</div><div class="term-val">The hidden part of an app — databases, server logic, user authentication. You don't see the backend, but it powers everything. Firebase is a backend service.</div></div>
     <div class="term-row"><div class="term-key">API</div><div class="term-val">A way for two pieces of software to talk to each other over the internet. When your app sends a message to Claude and gets a reply, it's using Anthropic's API.<em>Like a waiter — you place an order (request), the kitchen (API) brings food (response).</em></div></div>
     <div class="term-row"><div class="term-key">Environment Variable</div><div class="term-val">A secret value (like an API key) stored outside your code so it doesn't get shared publicly. Your code references them by name, never by value.<em>ANTHROPIC_API_KEY is an environment variable — the actual key stays hidden.</em></div></div>
-    <div class="term-row"><div class="term-key">Terminal</div><div class="term-val">A text window where you type commands directly to your computer. VS Code has a built-in terminal. Claude Code uses it to install tools, run your app locally, and push code to GitHub.</div></div>
+    <div class="term-row"><div class="term-key">Terminal</div><div class="term-val">A text window where you type commands directly to your computer. The Claude app's Code tab has one built in, and so does VS Code. Claude Code uses it to install tools, run your app locally, and push code to GitHub.</div></div>
     <div class="term-row"><div class="term-key">Local vs Live</div><div class="term-val">Local means running on your own computer — only you can see it. Live (or "in production") means deployed and accessible to anyone on the internet. You build locally, then deploy to make it live.</div></div>
     <div class="term-row"><div class="term-key">Context Window</div><div class="term-val">How much Claude can "remember" in a single conversation. Like short-term memory — it resets when you start a new chat. Very long conversations can fill it up.</div></div>
     <div class="term-row"><div class="term-key">Prompt</div><div class="term-val">What you type to Claude. The better your prompt — more context, more detail — the better Claude's output. This is a genuinely learnable skill.</div></div>
@@ -202,18 +203,24 @@ code{font-family:'DM Mono',monospace;font-size:12px;background:#f5f5f3;padding:2
   <div class="tool-card">
     <button class="tool-trigger open" onclick="toggleTool(this,'t-cc')">
       <div class="tool-icon">⚙️</div>
-      <div class="tool-info"><span class="tool-name">Claude Code</span><span class="tool-tagline">The builder — lives inside VS Code, writes and runs your code</span></div>
-      <div class="tool-badges"><span class="badge badge-inc">included w/ Pro</span></div>
+      <div class="tool-info"><span class="tool-name">Claude Code</span><span class="tool-tagline">The builder — lives in the Claude app's Code tab, writes and runs your code</span></div>
+      <div class="tool-badges"><span class="badge badge-inc">Pro / Max / Team</span></div>
       <span class="chevron" style="transform:rotate(180deg)">▾</span>
     </button>
     <div class="tool-body open" id="t-cc">
-      <p>Claude Code is the Claude extension inside VS Code. This is where actual building happens — it reads your files, writes code, runs commands in the terminal, and deploys your app. Unlike claude.ai, it has direct access to your project.</p>
+      <p>Claude Code is Claude with direct access to your files and terminal — this is where actual building happens. There are three ways to use it: the <strong>Code tab in the Claude app</strong> (the easiest way to start — no separate installs), the <strong>VS Code extension</strong> (if you prefer a dedicated code editor), or the <strong>command line</strong> (for advanced users). All three read the same <code>~/.claude</code> config, skills, and commands — set up once, works everywhere.</p>
+      <h4>How to open it</h4>
+      <div class="step-list">
+        <div class="step-item"><div class="step-num">1</div><span>Install the Claude app from claude.com/download</span></div>
+        <div class="step-item"><div class="step-num">2</div><span>Sign in, then click the <strong>Code</strong> tab</span></div>
+        <div class="step-item"><div class="step-num">3</div><span>Choose Local, Cloud, SSH, or WSL as your environment, pick a project folder and a model, and start typing</span></div>
+      </div>
       <h4>Key features</h4>
       <div class="feat-list">
         <div class="feat-item"><strong>File access</strong><span>Claude Code reads, writes, and edits files in your project. It sees your entire codebase and can make changes across multiple files at once.</span></div>
         <div class="feat-item"><strong>Terminal access</strong><span>Runs commands on your computer — installing packages, starting servers, deploying to Vercel, running Git. Asks permission before anything significant.</span></div>
         <div class="feat-item"><strong>Slash commands</strong><span>Custom shortcuts you type to trigger automated workflows. Type / to see what's available.</span></div>
-        <div class="feat-item"><strong>Plan mode</strong><span>Ask Claude to plan what it intends to do before making any changes. Review and approve, then it executes.</span></div>
+        <div class="feat-item"><strong>Permission modes</strong><span>A mode selector controls how much Claude does without asking: Manual (asks every time — safest for beginners), Accept edits, Plan (plans before touching anything), Auto, and Bypass permissions (skips prompts entirely — turn on later in Settings if you want speed over caution).</span></div>
         <div class="feat-item"><strong>CLAUDE.md</strong><span>A file inside your project that Claude reads at the start of every session. Contains rules and preferences so Claude stays consistent.</span></div>
         <div class="feat-item"><strong>Skills</strong><span>Live in <code>~/.claude/skills/</code> on your computer. Available across all your projects automatically — no upload needed.</span></div>
         <div class="feat-item"><strong>Plugins</strong><span>Installable extensions that add capabilities — Firebase support, security guidance, architecture tools, and more.</span></div>
@@ -226,15 +233,15 @@ code{font-family:'DM Mono',monospace;font-size:12px;background:#f5f5f3;padding:2
   <div class="tool-card">
     <button class="tool-trigger" onclick="toggleTool(this,'t-vscode')">
       <div class="tool-icon">🖥️</div>
-      <div class="tool-info"><span class="tool-name">VS Code</span><span class="tool-tagline">Your code editor — where everything happens</span></div>
-      <div class="tool-badges"><span class="badge badge-free">free</span></div>
+      <div class="tool-info"><span class="tool-name">VS Code</span><span class="tool-tagline">A dedicated code editor — optional, for seeing your code up close</span></div>
+      <div class="tool-badges"><span class="badge badge-free">free</span><span class="badge badge-opt">optional</span></div>
       <span class="chevron">▾</span>
     </button>
     <div class="tool-body" id="t-vscode">
-      <p>VS Code (Visual Studio Code) is the app where you'll spend most of your time. It's a code editor — like Microsoft Word, but for code. Claude Code lives inside it, the terminal is built in, and you manage all your project files here.</p>
-      <h4>Essential extensions to install</h4>
+      <p>VS Code is a free, dedicated code editor. You don't need it — the Claude app's Code tab covers everything in this kit — but some people like having a separate editor open to browse and read code more comfortably, especially as projects grow. If you're using the Claude app, you can jump into VS Code any time via <strong>Continue in...</strong> inside a Code tab session, no separate setup needed for that hand-off.</p>
+      <h4>If you install it, these extensions help</h4>
       <div class="feat-list">
-        <div class="feat-item"><strong>Claude Code (Anthropic)</strong><span>The main one — installs the Claude panel in your sidebar. Search "Claude Code" in the Extensions tab and install the one by Anthropic.</span></div>
+        <div class="feat-item"><strong>Claude Code (Anthropic)</strong><span>Installs the Claude panel in your sidebar so you can run Claude Code directly in VS Code instead of using "Continue in." Search "Claude Code" in the Extensions tab and install the one by Anthropic.</span></div>
         <div class="feat-item"><strong>GitLens</strong><span>Shows you who changed what and when, right inside your files. Makes Git history easy to understand without using the terminal.</span></div>
         <div class="feat-item"><strong>Prettier</strong><span>Automatically formats your code to look clean and consistent every time you save.</span></div>
         <div class="feat-item"><strong>Live Server</strong><span>Right-click an HTML file and open it in your browser with live reloading — every save instantly refreshes the page.</span></div>
@@ -308,7 +315,7 @@ code{font-family:'DM Mono',monospace;font-size:12px;background:#f5f5f3;padding:2
       <p>Cowork and Claude in Chrome are two tools that work together as an automation layer. Instead of Claude telling you how to do something, these tools let Claude actually do it — on your computer and in your browser.</p>
 
       <h4>Cowork — Claude on your desktop</h4>
-      <p style="margin-top:8px">Cowork is a mode inside the Claude desktop app (separate from the regular chat). You give Claude access to specific folders on your computer and describe a task — Claude reads your files, does the work, and produces finished outputs. It runs in an isolated virtual machine so it can only see what you explicitly allow.</p>
+      <p style="margin-top:8px">Cowork is one of three tabs in the Claude app — Chat, Cowork, and Code — sitting alongside the Code tab you may have already set up. You give Claude access to specific folders on your computer and describe a task — Claude reads your files, does the work, and produces finished outputs. It runs in an isolated virtual machine so it can only see what you explicitly allow.</p>
       <div class="feat-list">
         <div class="feat-item"><strong>File access</strong><span>Claude can read, edit, and create files in folders you specify — Word docs, PDFs, spreadsheets, text files. It can't touch anything outside those folders.</span></div>
         <div class="feat-item"><strong>Finished outputs</strong><span>Unlike regular chat where Claude describes what to do, Cowork produces actual files — a formatted Word doc, an Excel workbook, a PowerPoint deck — ready to use.</span></div>
@@ -335,16 +342,15 @@ code{font-family:'DM Mono',monospace;font-size:12px;background:#f5f5f3;padding:2
 
       <h4>How to set it up</h4>
       <div class="step-list">
-        <div class="step-item"><div class="step-num">1</div><span>Install the Claude desktop app from claude.ai if you haven't already</span></div>
-        <div class="step-item"><div class="step-num">2</div><span>In the desktop app, switch from Chat to <strong>Cowork</strong> mode using the toggle at the top</span></div>
-        <div class="step-item"><div class="step-num">3</div><span>For Claude in Chrome: go to the Chrome Web Store, search "Claude," and install the extension by Anthropic</span></div>
-        <div class="step-item"><div class="step-num">4</div><span>Sign in with your Claude account — the same credentials you use on claude.ai</span></div>
-        <div class="step-item"><div class="step-num">5</div><span>Pin the extension to your Chrome toolbar (puzzle piece icon → thumbtack next to "Claude")</span></div>
-        <div class="step-item"><div class="step-num">6</div><span>In Cowork settings, grant access only to the specific folders you want Claude to work with</span></div>
+        <div class="step-item"><div class="step-num">1</div><span>Already have the Claude app from setting up Claude Code? You're halfway there — just click the <strong>Cowork</strong> tab. If not, install it from claude.com/download first.</span></div>
+        <div class="step-item"><div class="step-num">2</div><span>For Claude in Chrome: go to the Chrome Web Store, search "Claude," and install the extension by Anthropic</span></div>
+        <div class="step-item"><div class="step-num">3</div><span>Sign in with your Claude account — the same credentials you use on claude.ai</span></div>
+        <div class="step-item"><div class="step-num">4</div><span>Pin the extension to your Chrome toolbar (puzzle piece icon → thumbtack next to "Claude")</span></div>
+        <div class="step-item"><div class="step-num">5</div><span>In Cowork settings, grant access only to the specific folders you want Claude to work with</span></div>
       </div>
 
       <div class="warn-box"><p><strong>Safety note:</strong> Both tools are in beta. Only give Claude access to folders with files you're comfortable it seeing. Don't point it at folders with passwords, financial records, or sensitive personal documents. Always review Claude's plan before approving significant actions.</p></div>
-      <div class="tip-box"><p><strong>Pro plan note:</strong> Claude in Chrome on Pro is currently limited to the Haiku model (fast but less capable). Max, Team, and Enterprise plans can choose Sonnet or Opus for browser tasks.</p></div>
+      <div class="tip-box"><p><strong>Model note:</strong> Claude in Chrome on the Pro plan includes both Sonnet (the default) and Haiku (a faster, lighter alternative). Opus requires a Max, Team, or Enterprise plan.</p></div>
     </div>
   </div>
 
@@ -396,12 +402,12 @@ code{font-family:'DM Mono',monospace;font-size:12px;background:#f5f5f3;padding:2
 
 <!-- CLAUDE CODE TAB -->
 <div id="page-cc" class="page">
-  <div class="section-head"><h2>Claude Code features</h2><p>What the VS Code extension can do that the chat interface can't.</p></div>
+  <div class="section-head"><h2>Claude Code features</h2><p>What Claude Code can do that the chat interface can't — whether you're using the Claude app's Code tab, the VS Code extension, or the command line.</p></div>
   <div class="feat-list">
     <div class="feat-item"><strong>File access</strong><span>Claude Code reads, writes, and edits the files in your project folder. It sees your entire codebase and can make coordinated changes across multiple files at once.</span></div>
     <div class="feat-item"><strong>Terminal access</strong><span>Runs commands in the terminal on your behalf — installing packages, starting servers, deploying to Vercel, running Git. It asks for your permission before doing anything significant.</span></div>
     <div class="feat-item"><strong>Slash commands</strong><span>Custom shortcuts you type in the Claude Code chat to trigger automated multi-step workflows. They're stored as <code>.md</code> files in a commands folder. Type <code>/</code> to see everything available.</span></div>
-    <div class="feat-item"><strong>Plan mode</strong><span>Before Claude Code makes changes, ask it to plan first — a step-by-step breakdown of what it intends to do. Review and approve, then it executes.</span></div>
+    <div class="feat-item"><strong>Permission modes</strong><span>A mode selector controls how much Claude does without asking: Manual (asks every time — safest for beginners), Accept edits, Plan (plans before touching anything), Auto, and Bypass permissions (skips prompts entirely — turn on later in Settings if you want speed over caution).</span></div>
     <div class="feat-item"><strong>CLAUDE.md</strong><span>A special file inside your project folder that Claude reads at the start of every session. Contains rules, preferences, and background about your project.</span></div>
     <div class="feat-item"><strong>Skills</strong><span>Live as folders in <code>~/.claude/skills/</code> on your computer. Available across all projects automatically. Each skill has a <code>SKILL.md</code> file that teaches Claude a reusable technique or workflow.</span></div>
     <div class="feat-item"><strong>Plugins</strong><span>Installable extensions that add new capabilities — Firebase support, security tools, architecture guidance, and more.</span></div>
@@ -428,7 +434,7 @@ code{font-family:'DM Mono',monospace;font-size:12px;background:#f5f5f3;padding:2
     <div class="model-card">
       <div class="model-name">Haiku</div>
       <div class="model-speed">Fastest ⚡⚡ — lightest</div>
-      <div class="model-use">Simple, quick tasks. Not as capable, but very fast. You'll rarely need to choose this manually.</div>
+      <div class="model-use">Simple, quick tasks. Lighter weight and very fast — good for well-defined tasks. You'll rarely need to choose this manually.</div>
     </div>
   </div>
   <div class="tip-box" style="margin-top:16px"><p><strong>Practical rule:</strong> Leave it on Sonnet for everyday building. Switch to Opus when you're stuck on something hard or making a big architectural decision.</p></div>
@@ -458,7 +464,7 @@ code{font-family:'DM Mono',monospace;font-size:12px;background:#f5f5f3;padding:2
 
   <div class="wf-legend">
     <div class="legend-item"><span class="wf-tag tag-ai">claude.ai</span> In the browser chat</div>
-    <div class="legend-item"><span class="wf-tag tag-cc">Claude Code</span> In VS Code</div>
+    <div class="legend-item"><span class="wf-tag tag-cc">Claude Code</span> In the Claude app's Code tab</div>
     <div class="legend-item"><span class="wf-tag tag-vercel">vercel.com</span> In the browser</div>
     <div class="legend-item"><span class="wf-tag tag-opt">optional</span> Can skip</div>
   </div>
@@ -502,7 +508,7 @@ code{font-family:'DM Mono',monospace;font-size:12px;background:#f5f5f3;padding:2
     </div>
   </div>
 
-  <div class="wf-divider"><div class="wf-divider-line"></div><div class="wf-divider-label">Switch to VS Code</div><div class="wf-divider-line"></div></div>
+  <div class="wf-divider"><div class="wf-divider-line"></div><div class="wf-divider-label">Switch to the Code tab</div><div class="wf-divider-line"></div></div>
 
   <div class="phase">
     <div class="phase-label phase-build">Phase 2 — Set up and build</div>
@@ -512,7 +518,7 @@ code{font-family:'DM Mono',monospace;font-size:12px;background:#f5f5f3;padding:2
         <div class="wf-num">5</div>
         <div class="wf-content">
           <div class="wf-title">Create the project <span class="wf-tag tag-cc">Claude Code</span></div>
-          <div class="wf-desc">Open VS Code, open the Claude Code panel, and type <code>/new-project</code>. Claude Code will create your project folder, set up the file structure, create a GitHub repository, and connect it to Vercel — all automatically.</div>
+          <div class="wf-desc">Open the Claude app, click the <strong>Code</strong> tab, and type <code>/new-project</code>. Claude Code will create your project folder, set up the file structure, create a GitHub repository, and connect it to Vercel — all automatically.</div>
           <div class="wf-cmd">/new-project</div>
         </div>
       </div>

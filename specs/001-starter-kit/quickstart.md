@@ -4,23 +4,23 @@
 
 ## Prerequisites
 
-- macOS computer
-- Claude Pro account ($20/month at claude.ai)
+- macOS or Windows computer
+- Claude account with a paid plan ($20/month Claude Pro is the cheapest option; Max, Team, and Enterprise also work)
 - Internet connection
 
 ## Setup (for the recipient)
 
-1. Install VS Code from code.visualstudio.com
-2. Install Node.js LTS from nodejs.org
+1. Create a Claude account at claude.ai and subscribe to a paid plan
+2. Install the Claude app from claude.com/download, then sign in (Windows: Git for Windows is required for local sessions — the app prompts if it's missing)
 3. Clone the repo:
    ```
    git clone https://github.com/zleavitt-401/starter-repo ~/.claude
    ```
-4. Open VS Code
-5. Install Claude Code extension (by Anthropic) from Extensions sidebar
-6. Enable Bypass Permissions in VS Code Settings
-7. Install recommended extensions: GitLens, Prettier, Live Server, Error Lens
-8. Open Claude Code panel, type `/starter`, follow the prompts
+4. In the Claude app, click the **Code** tab, choose **Local**, and select the `~/.claude` folder
+5. Pick a model and leave the permission mode on **Manual**
+6. In the Code tab's chat, type `/starter`, follow the prompts
+
+VS Code remains available as an optional add-on (see the README's "Optional: Set up VS Code too" section) but isn't required for any of the above.
 
 ## Verification
 

@@ -2,7 +2,7 @@
 
 Everything you need to start building with Claude — commands, skills, and a field guide — in one place.
 
-This repo is designed to be cloned once to a special folder on your computer. After that, Claude Code (inside VS Code) will have access to all the tools and shortcuts included here. No coding experience required.
+This repo is designed to be cloned once to a special folder on your computer. After that, Claude — in the Claude app's **Code** tab — will have access to all the tools and shortcuts included here. No coding experience required.
 
 ---
 
@@ -31,34 +31,28 @@ Follow every step in order. If something doesn't make sense, read it again slowl
 
 1. Go to [claude.ai](https://claude.ai)
 2. Create an account if you don't have one
-3. Subscribe to **Claude Pro** ($20/month) — this is required for Claude Code to work
+3. Subscribe to a paid plan — **Claude Pro** ($20/month) is the cheapest option and unlocks Claude Code (Max, Team, and Enterprise plans also work)
 
-### Step 2: Install VS Code
+### Step 2: Install the Claude app
 
-VS Code is an IDE (Integrated Development Environment) — a free app where you write and manage code, and talk to Claude.
+The Claude app is a free download with three tabs — **Chat**, **Cowork**, and **Code**. The **Code** tab is where you'll do all your building — it's Claude Code with a full interface, no separate installs required.
 
-1. Go to [code.visualstudio.com](https://code.visualstudio.com)
-2. Click the big download button — it will detect your computer type automatically
-3. Open the downloaded file and drag VS Code to your Applications folder (Mac) or run the installer (Windows)
-4. Open VS Code
+1. Go to [claude.com/download](https://claude.com/download)
+2. Download for your computer (macOS or Windows; Linux is available in beta)
+3. Open the downloaded file and install it like any other app
+4. Open the Claude app and sign in with the account you created in Step 1
 
-### Step 3: Install Node.js
+> **This one app replaces what used to require VS Code + a separate extension + a Node.js install.** You don't need any of those to get started — everything happens inside the Claude app now.
 
-Node.js is a tool that runs behind the scenes. Claude Code and other developer tools need it.
+> **Windows users:** Local coding sessions need [Git for Windows](https://git-scm.com/downloads/win) installed. The app checks for this itself and will prompt you if it's missing.
 
-1. Go to [nodejs.org](https://nodejs.org)
-2. Download the **LTS** version (the one on the left — LTS means "Long Term Support," which just means "the stable one")
-3. Open the downloaded file and follow the installer
-4. When it's done, **restart VS Code** (close it and open it again)
+### Step 3: Clone this repo
 
-### Step 4: Clone this repo
+"Cloning" means downloading a copy of this folder to your computer using Git.
 
-"Cloning" means downloading a copy of this folder to your computer using Git (which was installed with Node.js).
-
-1. Open VS Code
-2. Open the built-in terminal: click **Terminal** in the top menu bar, then **New Terminal**
-3. A panel will appear at the bottom of VS Code — this is the terminal
-4. Copy and paste this entire line into the terminal, then press Enter:
+1. Open the Claude app and click the **Code** tab
+2. Open the built-in terminal (press `` Cmd+` `` on Mac / `` Ctrl+` `` on Windows, or find it in the Views menu)
+3. Copy and paste this entire line into the terminal, then press Enter:
 
 ```
 git clone https://github.com/zleavitt-401/starter-repo ~/.claude
@@ -73,43 +67,41 @@ git clone https://github.com/zleavitt-401/starter-repo ~/.claude
 > git clone https://github.com/zleavitt-401/starter-repo %USERPROFILE%\.claude
 > ```
 
-### Step 5: Install the Claude Code extension
+### Step 4: Open the Code tab and start a session
 
-1. In VS Code, click the **Extensions** icon in the left sidebar (it looks like four squares)
-   - Or press `Cmd+Shift+X` on Mac / `Ctrl+Shift+X` on Windows
-2. Search for **Claude Code**
-3. Find the one by **Anthropic** and click **Install**
-4. After it installs, you'll see a Claude icon in your left sidebar — click it to open the Claude panel
-5. Sign in with the same account you created in Step 1
+1. In the Claude app, click the **Code** tab (next to Chat and Cowork)
+2. Choose **Local** as your environment
+3. Select the `~/.claude` folder you just cloned as your project folder
+4. Pick a model — **Sonnet** is a good default
+5. Leave the permission mode on **Manual** for now — Claude will ask before changing anything, which is the safest way to get started
 
-### Step 6: Enable Bypass Permissions
+> **About permission modes:** The mode selector next to the send button controls how much Claude does without asking. **Manual** (the default) asks before every change — recommended while you're learning. Once you're comfortable, you can switch to **Accept edits** for faster iteration, or turn on **Bypass permissions** in Settings → Claude Code if you want Claude to run without stopping to ask. None of this is required to get started.
 
-This setting lets Claude Code run commands without asking for permission every single time. It makes the experience much smoother.
+### Step 5: Run /starter
 
-1. Open VS Code Settings: press `Cmd+,` on Mac / `Ctrl+,` on Windows
-2. Search for **Claude Code bypass**
-3. Find the setting called **Bypass Permissions** and check the box to enable it
+This is the last step. It finishes setting up your environment by installing a few more tools and connecting your accounts.
 
-> **Is this safe?** Yes, for learning and personal projects. Claude will still tell you what it's doing — it just won't pause and wait for you to click "Allow" on every single action.
+1. In the Code tab's chat, type `/starter` and press Enter
+2. Claude will walk you through the rest — just follow its instructions
 
-### Step 7: Install recommended extensions
+When `/starter` finishes, you'll see a summary showing everything is connected. You're ready to build.
 
-These are optional but make your life much easier. Install them the same way you installed Claude Code (Extensions sidebar → search → Install):
+---
+
+## Optional: Set up VS Code too
+
+You don't need this. The Claude app's Code tab covers everything in this kit. But if you'd like a dedicated code editor to browse and read your files in — nice for peeking at what Claude built, or if you outgrow this kit later — you can add VS Code any time.
+
+1. Go to [code.visualstudio.com](https://code.visualstudio.com) and install it like any other app
+2. From a Code tab session in the Claude app, look for **Continue in...** — it hands your current session off to VS Code with the same files and context, no separate setup needed
+3. If you'd rather run Claude Code as a standalone VS Code extension instead, search **Claude Code** in the Extensions sidebar (`Cmd+Shift+X` / `Ctrl+Shift+X`) and install the one by **Anthropic** — it shares the same `~/.claude` config, so nothing here needs to be redone
+
+If you do set up VS Code, these extensions used to be recommended alongside it (the Claude app's Code tab already includes their equivalents natively, so they're just for VS Code itself):
 
 - **GitLens** — shows who changed what in your code and when
 - **Prettier** — automatically makes your code look clean when you save
 - **Live Server** — lets you preview HTML files in your browser with live reloading
 - **Error Lens** — shows error messages right next to the problem line in your code
-
-### Step 8: Run /starter
-
-This is the last step. It finishes setting up your environment by installing a few more tools and connecting your accounts.
-
-1. Click the Claude icon in the left sidebar to open the Claude panel
-2. Type `/starter` and press Enter
-3. Claude will walk you through the rest — just follow its instructions
-
-When `/starter` finishes, you'll see a summary showing everything is connected. You're ready to build.
 
 ---
 
@@ -141,8 +133,8 @@ Open the field guide for a beginner-friendly reference covering dev terms, tools
 
 When new commands or skills are added to this repo, you can get them with one command:
 
-1. Open VS Code
-2. Open the terminal (`Terminal` → `New Terminal`)
+1. Open the Claude app's Code tab
+2. Open the integrated terminal (`` Cmd+` `` / `` Ctrl+` ``) — or your VS Code terminal, if that's what you're using
 3. Run:
 
 ```

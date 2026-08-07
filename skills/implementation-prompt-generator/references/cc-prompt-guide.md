@@ -12,7 +12,7 @@ Include these unless the user specifies otherwise:
 
 **Deployment:** Vercel for hosting, automatic preview deployments per GitHub branch, production deploy from `main` branch.
 
-**Development:** VS Code with Claude Code extension, Git workflow (feature branches → PR → merge).
+**Development:** Claude Code (the Claude app's Code tab, or the VS Code extension), Git workflow (feature branches → PR → merge).
 
 ## Zero-Build Constraints
 

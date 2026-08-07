@@ -19,9 +19,9 @@ Create a new project with GitHub repo and Spec Kit:
 8. Provide:
    - Repo URL
    - Git clone command
-   - Confirmation that folder is ready to open in VS Code
+   - Confirmation that folder is ready to open in Claude Code (the Claude app's Code tab, or VS Code)
 
-After I open the folder in VS Code, I'll run:
+After I open the folder in Claude Code, I'll run:
 - /speckit.constitution with my project rules
 - /speckit.specify with my feature specs
 - Then continue with /speckit.plan, /speckit.tasks, /speckit.implement

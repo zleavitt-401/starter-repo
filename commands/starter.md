@@ -4,7 +4,7 @@ description: First-time environment setup — installs Vercel CLI, GitHub CLI, c
 
 # /starter — New Developer Environment Setup
 
-You are helping a brand new developer finish setting up their environment. This repo has already been cloned to ~/.claude, so commands and skills are already in place. Node.js and Claude Code are already installed. Do everything else for them.
+You are helping a brand new developer finish setting up their environment. This repo has already been cloned to ~/.claude, so commands and skills are already in place, and Claude Code is already installed (via the Claude app's Code tab or the CLI). Do everything else for them.
 
 Work through each step in order. Run the command, check the result, fix any errors before moving on. Be encouraging and explain what each step is doing in plain language — this person is new to coding.
 
@@ -31,7 +31,21 @@ node --version && npm --version
 ```
 
 - Both print version numbers → ✅ continue
-- "command not found" → stop and tell the user: "Node.js doesn't seem to be installed yet. Please go to https://nodejs.org, download the LTS version, install it, then restart VS Code and try /starter again."
+- "command not found" → install it:
+
+**Mac:**
+```bash
+brew install node
+```
+
+If brew is not installed, install it first (see Step 3 below for the command), then retry `brew install node`.
+
+**Windows** (if winget is available):
+```bash
+winget install OpenJS.NodeJS.LTS
+```
+
+After installing, run `node --version && npm --version` again to confirm. If neither approach works, tell the user: "Please install Node.js manually — go to https://nodejs.org, download the LTS version, install it, then restart your terminal and try /starter again."
 
 ---
 
@@ -60,7 +74,7 @@ Then retry `brew install gh`.
 winget install GitHub.cli
 ```
 
-If neither works, tell the user: "Please install GitHub CLI manually from https://cli.github.com, then restart VS Code and continue."
+If neither works, tell the user: "Please install GitHub CLI manually from https://cli.github.com, then restart your terminal and continue."
 
 ---
 
