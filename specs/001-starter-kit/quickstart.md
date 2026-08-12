@@ -6,15 +6,20 @@
 
 - macOS or Windows computer
 - Claude account with a paid plan ($20/month Claude Pro is the cheapest option; Max, Team, and Enterprise also work)
+- GitHub account (free)
 - Internet connection
+
+## Field Guide (read first)
+
+Before starting setup, open `field-guide.html` from the repo (download the raw file from github.com/zleavitt-401/starter-repo and open it locally, or use the live Pages link once available — see "Field Guide" below). It's a plain-English glossary of terms used throughout this guide (repo, clone, fork, terminal, etc.) for readers with no coding background.
 
 ## Setup (for the recipient)
 
-1. Create a Claude account at claude.ai and subscribe to a paid plan
-2. Install the Claude app from claude.com/download, then sign in (Windows: Git for Windows is required for local sessions — the app prompts if it's missing)
-3. Clone the repo:
+1. Create a Claude account at claude.ai and subscribe to a paid plan; also create a free GitHub account at github.com/join if you don't have one
+2. Install the Claude app from claude.com/download, then sign in (Windows: Git for Windows is required for local sessions — the app prompts if it's missing). The app has three tabs — Chat (conversation, with Artifacts for anything substantial Claude produces), Cowork (semi-autonomous file production), and Code (Claude Code, used for all of the below)
+3. Fork the repo on GitHub (github.com/zleavitt-401/starter-repo → **Fork**), then clone your fork:
    ```
-   git clone https://github.com/zleavitt-401/starter-repo ~/.claude
+   git clone https://github.com/<your-github-username>/starter-repo ~/.claude
    ```
 4. In the Claude app, click the **Code** tab, choose **Local**, and select the `~/.claude` folder
 5. Pick a model and leave the permission mode on **Manual**
@@ -41,6 +46,10 @@ cd ~/.claude && git pull
 Create a new folder in `~/.claude/skills/` with a `SKILL.md` file.
 It will be ignored by git and survive `git pull`.
 
+## Using skills in claude.ai chat
+
+Skills in `~/.claude/skills/` only run automatically in Claude Code — they don't carry over to claude.ai chat automatically. To use one in chat: enable "code execution and file creation" in claude.ai Settings → Capabilities, then Settings → Capabilities → Skills → + → Create skill → Upload a skill, and upload a zip of the skill folder. Private per account; one-time per skill. Skills that hand off to Claude Code slash commands (e.g. `implementation-prompt-generator` → `/speckit.specify`) only complete that hand-off inside Claude Code.
+
 ## Field Guide
 
-Visit: https://zleavitt-401.github.io/starter-repo
+Visit: https://\<your-github-username>.github.io/starter-repo (after enabling GitHub Pages on your fork)

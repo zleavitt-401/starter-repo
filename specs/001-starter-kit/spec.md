@@ -185,8 +185,11 @@ automated testing, Windows-only optimization
 
 - User is on macOS with Homebrew available or installable
 - User has a paid Claude Pro account before starting
-- Repo is hosted at github.com/zleavitt-401/starter-repo
-- GitHub Pages will be enabled manually in repo settings after first push
+- Canonical repo is hosted at github.com/zleavitt-401/starter-repo; each user
+  forks it to their own GitHub account and clones their fork, so they own a
+  personal copy rather than the canonical one
+- GitHub Pages will be enabled manually in the user's fork settings after
+  first push
 - Two skills (md-generator, debugging-lightweight-stacks) are not yet
   available on the source machine and will be added in a future update
 

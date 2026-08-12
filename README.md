@@ -4,6 +4,8 @@ Everything you need to start building with Claude — commands, skills, and a fi
 
 This repo is designed to be cloned once to a special folder on your computer. After that, Claude — in the Claude app's **Code** tab — will have access to all the tools and shortcuts included here. No coding experience required.
 
+New to coding entirely? Read "Before you start: open the field guide" below before anything else — it's a plain-English glossary for every unfamiliar term you're about to run into.
+
 ---
 
 ## What's in this repo
@@ -21,21 +23,41 @@ This repo is designed to be cloned once to a special folder on your computer. Af
 
 Follow every step in order — these instructions are written to be followed literally.
 
+### Before you start: open the field guide
+
+The steps below use words like "repo," "clone," "terminal," and "fork." If any of those are new to you, open the field guide now and keep it in a browser tab — it's a plain-English glossary and reference built for people who have never coded before. Whenever a term below feels unfamiliar, check there first.
+
+1. Go to [github.com/zleavitt-401/starter-repo/blob/main/field-guide.html](https://github.com/zleavitt-401/starter-repo/blob/main/field-guide.html)
+2. Click the **Download raw file** button (usually a down-arrow icon near the top right of the file view)
+3. Find the downloaded `field-guide.html` file (likely in your Downloads folder) and double-click it — it opens in your web browser, fully formatted
+
+> **Note:** Once you finish Setup below, your own copy will have a clean, permanent web link instead (see "Read the field guide" further down) — but you don't need to wait until then to start using it.
+
 ### Helpful Tips
 
 - If you're ever confused, unsure, or something isn't working, just ask Claude
 - Screenshots are extremely useful — if a dialogue pops up requiring a decision, take a screenshot and show Claude. It'll explain and advise
 - To show Claude text on your screen, dropping a screenshot into the chat is often quicker than copy/pasting
+- Every new term is also in the field guide — you don't need to memorize anything before you begin
 
-### Step 1: Create a Claude account
+### Step 1: Create a Claude account and a GitHub account
 
 1. Go to [claude.ai](https://claude.ai)
 2. Create an account if you don't have one
 3. Subscribe to a paid plan — **Claude Pro** ($20/month) is the cheapest option and unlocks Claude Code (Max, Team, and Enterprise plans also work)
+4. Go to [github.com/join](https://github.com/join) and create a free GitHub account if you don't have one — you'll use this to save your own copy of this repo and host your projects
+
+> **Why GitHub too?** Claude writes and saves your code, but GitHub is where it lives online — it's what lets you keep a copy of this kit under your own account, publish projects, and get updates. You'll use it throughout the rest of setup.
 
 ### Step 2: Install the Claude app
 
-The Claude app is a free download with three tabs — **Chat**, **Cowork**, and **Code**. The **Code** tab is where you'll do all your building — it's Claude Code with a full interface, no separate installs required.
+The Claude app is a free download with three tabs, and each does a different job:
+
+- **Chat** — talk with Claude like a conversation. Good for questions, brainstorming, and writing. When Claude produces something substantial here (a webpage, a document, a diagram), it opens in a side panel called an **Artifact** — you can view it live, keep iterating on it, and come back to it later.
+- **Cowork** — give Claude a folder and a task, and it works semi-independently to produce finished files (a Word doc, a spreadsheet, a slide deck) — you approve its plan first, then it goes and does the work.
+- **Code** — where you'll do all your building in this kit. This is Claude Code with a full interface, no separate installs required. It reads and writes real project files, runs commands in a terminal, and is what every step below uses.
+
+This kit lives entirely in the **Code** tab — the other two are worth knowing about, but you won't need them to follow this guide. (The field guide has more on all three, plus Artifacts, if you want the fuller picture.)
 
 1. Go to [claude.com/download](https://claude.com/download)
 2. Download for your computer (macOS or Windows; Linux is available in beta)
@@ -46,25 +68,27 @@ The Claude app is a free download with three tabs — **Chat**, **Cowork**, and 
 
 > **Windows users:** Local coding sessions need [Git for Windows](https://git-scm.com/downloads/win) installed. The app checks for this itself and will prompt you if it's missing.
 
-### Step 3: Clone this repo
+### Step 3: Fork and clone this repo
 
-"Cloning" means downloading a copy of this folder to your computer using Git.
+A "repo" (repository) is just a project folder that Git and GitHub track — this whole starter kit is one. "Forking" makes your own copy of this repo under your GitHub account. "Cloning" then downloads that copy to your computer using Git. You want your own fork (not the original) so it's yours to keep, update, and eventually host on GitHub Pages.
 
-1. Open the Claude app and click the **Code** tab
-2. Open the built-in terminal (press `` Cmd+` `` on Mac / `` Ctrl+` `` on Windows, or find it in the Views menu)
-3. Copy and paste this entire line into the terminal, then press Enter:
+1. Go to [github.com/zleavitt-401/starter-repo](https://github.com/zleavitt-401/starter-repo) and sign in with the GitHub account from Step 1
+2. Click **Fork** (top right of the page) → **Create fork**. This creates `github.com/<your-github-username>/starter-repo`
+3. Open the Claude app and click the **Code** tab
+4. Open the built-in terminal — a text-based window where you type commands instead of clicking buttons; it looks intimidating at first but you'll only ever need to copy/paste the exact lines given here (press `` Cmd+` `` on Mac / `` Ctrl+` `` on Windows, or find it in the Views menu)
+5. Copy this line into the terminal, replace `<your-github-username>` with your actual GitHub username (visible in your fork's URL), then press Enter:
 
 ```
-git clone https://github.com/zleavitt-401/starter-repo ~/.claude
+git clone https://github.com/<your-github-username>/starter-repo ~/.claude
 ```
 
-> **What this does:** It downloads this entire repo into a hidden folder called `.claude` in your home directory. This is the exact folder where Claude Code looks for commands and skills. That's why it has to go here — if you put it somewhere else, Claude won't find it.
+> **What this does:** It downloads your fork of this repo into a hidden folder called `.claude` in your home directory. This is the exact folder where Claude Code looks for commands and skills. That's why it has to go here — if you put it somewhere else, Claude won't find it.
 
 > **If you get an error saying the folder already exists:** You may already have a `~/.claude` folder from a previous Claude Code session. Back it up first by running `mv ~/.claude ~/.claude-backup` in the terminal, then try the clone command again. After cloning, you can copy any personal files from the backup into the new folder.
 
-> **Windows users:** The command is slightly different. Use this instead:
+> **Windows users:** The command is slightly different. Use this instead (with your GitHub username in place of `<your-github-username>`):
 > ```
-> git clone https://github.com/zleavitt-401/starter-repo %USERPROFILE%\.claude
+> git clone https://github.com/<your-github-username>/starter-repo %USERPROFILE%\.claude
 > ```
 
 ### Step 4: Open the Code tab and start a session
@@ -81,10 +105,13 @@ git clone https://github.com/zleavitt-401/starter-repo ~/.claude
 
 This is the last step. It finishes setting up your environment by installing a few more tools and connecting your accounts.
 
-1. In the Code tab's chat, type `/starter` and press Enter
-2. Claude will walk you through the rest — just follow its instructions
+`/starter` is a **slash command** — a shortcut typed directly into the Claude chat that tells Claude to run a pre-written set of instructions, instead of you describing what you want in your own words. This repo comes with several (see "See all available commands" below); you'll type them the same way anytime you use one.
 
-When `/starter` finishes, you'll see a summary showing everything is connected. You're ready to build.
+1. In the Code tab's chat, type `/starter` and press Enter
+2. Claude will walk you through the rest — just follow its instructions. It may ask you to log into GitHub or **Vercel** in a browser window that pops up; that's expected. (Vercel is a free service that takes the app you build and publishes it to a real, public web address — `/starter` connects your account to it now so `/new-project` can use it later.)
+3. This step can take a few minutes, especially if it needs to install anything — that's normal, just wait for Claude to finish each part before responding
+
+When `/starter` finishes, Claude will show a summary confirming each tool is connected (Node, Git, GitHub, Vercel, commands, and skills all listed with checkmarks). You're ready to build. If anything shows an error instead of a checkmark, tell Claude and it'll help you fix it before moving on.
 
 ---
 
@@ -109,7 +136,7 @@ If you do set up VS Code, these extensions used to be recommended alongside it (
 
 ### Start your first project
 
-Type `/new-project` in Claude Code. It will create a new app folder, set up GitHub, and connect it to Vercel (which publishes your app to the internet) — all automatically.
+Type `/new-project` in Claude Code. It will ask you what to name your project, then create a new app folder, set up a GitHub repo, and connect it to Vercel (which publishes your app to the internet) — all automatically. Expect it to ask a couple of questions and take a minute or two; when it's done it'll give you a project folder, a GitHub link, and confirmation that everything's connected.
 
 ### See all available commands
 
@@ -119,13 +146,24 @@ Type `/` in Claude Code to see every command available. The most important ones:
 - **Spec Kit** — a structured workflow for planning and building features with Claude — use `/constitution` → `/specify` → `/plan` → `/implement`
 - `/update-docs` — update your project's documentation after making changes
 
+### Using skills in claude.ai chat (not just Claude Code)
+
+The skills in this kit (see `skills/` below) run automatically in **Claude Code** — you never have to think about them there. But if you also want to use skills like brainstorming or prompt-generation in regular **claude.ai chat** (in a browser, not Claude Code), they don't carry over automatically — chat and Claude Code are separate, so each skill has to be uploaded once, per account:
+
+1. In claude.ai, go to **Settings → Capabilities** and make sure "code execution and file creation" is turned on
+2. Go to **Settings → Capabilities → Skills**, click **+**, then **Create skill → Upload a skill**
+3. In `~/.claude/skills/`, find the skill folder you want (e.g. `brainstorming-ideas-into-designs`), zip that folder, and upload the zip
+4. The skill now appears in your claude.ai skills list and can be toggled on for any chat
+
+This is private to your account and only needs to be done once per skill. Note that a couple of skills in this kit (like `implementation-prompt-generator`) are written to hand off into Claude Code slash commands like `/speckit.specify` — those hand-off steps only work inside Claude Code, so in chat you'd copy the generated prompt over to Claude Code yourself.
+
 ### Read the field guide
 
 Open the field guide for a beginner-friendly reference covering dev terms, tools, and workflows:
 
-**[zleavitt-401.github.io/starter-repo](https://zleavitt-401.github.io/starter-repo)**
+**`<your-github-username>.github.io/starter-repo`**
 
-(This link works after you enable GitHub Pages — see below.)
+(Replace `<your-github-username>` with your own GitHub username. This link works after you enable GitHub Pages on your fork — see below.)
 
 ---
 
@@ -165,13 +203,15 @@ Your personal skills and the repo skills live side by side. Updates to the repo 
 
 This is a one-time step to make the field guide available as a website:
 
-1. Go to your repo on GitHub (github.com/zleavitt-401/starter-repo)
+1. Go to your fork on GitHub (github.com/`<your-github-username>`/starter-repo)
 2. Click **Settings** (tab at the top of the repo page)
 3. In the left sidebar, click **Pages**
 4. Under "Source," select **Deploy from a branch**
 5. Under "Branch," select **main** and leave the folder as **/ (root)**
 6. Click **Save**
-7. Wait a minute or two — your field guide will be live at `zleavitt-401.github.io/starter-repo`
+7. Wait a minute or two — your field guide will be live at `<your-github-username>.github.io/starter-repo`
+
+Bookmark that link — it's now your permanent, always-up-to-date field guide.
 
 ---
 
