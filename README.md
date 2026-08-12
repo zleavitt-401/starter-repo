@@ -27,9 +27,9 @@ Follow every step in order — these instructions are written to be followed lit
 
 The steps below use words like "repo," "clone," "terminal," and "fork." If any of those are new to you, open the field guide now and keep it in a browser tab — it's a plain-English glossary and reference built for people who have never coded before. Whenever a term below feels unfamiliar, check there first.
 
-1. Go to [github.com/zleavitt-401/starter-repo/blob/main/field-guide.html](https://github.com/zleavitt-401/starter-repo/blob/main/field-guide.html)
-2. Click the **Download raw file** button (usually a down-arrow icon near the top right of the file view)
-3. Find the downloaded `field-guide.html` file (likely in your Downloads folder) and double-click it — it opens in your web browser, fully formatted
+1. Go to [this direct link](https://raw.githubusercontent.com/zleavitt-401/starter-repo/main/field-guide.html)
+2. Your browser will either show it as plain text or ask where to save it — if it just shows text, save the page (`Cmd+S` / `Ctrl+S`) as `field-guide.html`
+3. Find the saved `field-guide.html` file (likely in your Downloads folder) and double-click it — it opens in your web browser, fully formatted
 
 > **Note:** Once you finish Setup below, your own copy will have a clean, permanent web link instead (see "Read the field guide" further down) — but you don't need to wait until then to start using it.
 

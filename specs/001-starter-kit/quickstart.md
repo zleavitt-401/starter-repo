@@ -11,7 +11,7 @@
 
 ## Field Guide (read first)
 
-Before starting setup, open `field-guide.html` from the repo (download the raw file from github.com/zleavitt-401/starter-repo and open it locally, or use the live Pages link once available — see "Field Guide" below). It's a plain-English glossary of terms used throughout this guide (repo, clone, fork, terminal, etc.) for readers with no coding background.
+Before starting setup, open `field-guide.html` from the repo: go to https://raw.githubusercontent.com/zleavitt-401/starter-repo/main/field-guide.html and save it locally (or use the live Pages link once available — see "Field Guide" below). It's a plain-English glossary of terms used throughout this guide (repo, clone, fork, terminal, etc.) for readers with no coding background.
 
 ## Setup (for the recipient)
 
