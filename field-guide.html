@@ -175,6 +175,40 @@ code{font-family:'DM Mono',monospace;font-size:12px;background:#f5f5f3;padding:2
 <div id="page-tools" class="page">
   <div class="section-head"><h2>Your tools</h2><p>Click any tool to learn what it does and how to use it.</p></div>
 
+  <figure style="margin:0 0 20px">
+    <svg viewBox="0 0 560 150" role="img" aria-label="The Claude app has one window with three tabs — Chat, Cowork, and Code. Chat is for planning and talking things through. Cowork produces finished files semi-autonomously. Code is Claude Code, where this kit's building happens — it's the tab you'll use for almost everything below." style="width:100%;height:auto;max-width:520px;display:block;margin:0 auto">
+      <text x="280" y="20" text-anchor="middle" font-family="DM Mono, monospace" font-size="10" letter-spacing="1" fill="#999">THE CLAUDE APP — ONE WINDOW, THREE TABS</text>
+
+      <!-- window chrome -->
+      <rect x="20" y="34" width="520" height="96" rx="10" fill="#fff" stroke="#e0ddd8" stroke-width="1"/>
+
+      <!-- tab bar -->
+      <rect x="20" y="34" width="520" height="34" rx="10" fill="#f9f8f6" stroke="#e0ddd8" stroke-width="1"/>
+      <rect x="20" y="58" width="520" height="10" fill="#f9f8f6"/>
+
+      <!-- Chat tab -->
+      <text x="90" y="56" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#888">Chat</text>
+
+      <!-- Cowork tab -->
+      <text x="200" y="56" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#888">Cowork</text>
+
+      <!-- Code tab, active -->
+      <rect x="290" y="34" width="110" height="34" rx="10" fill="#fff"/>
+      <rect x="290" y="58" width="110" height="10" fill="#fff"/>
+      <line x1="290" y1="66" x2="400" y2="66" stroke="#1a1a1a" stroke-width="2"/>
+      <text x="345" y="56" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" font-weight="500" fill="#1a1a1a">Code</text>
+
+      <!-- callout pointing at Code -->
+      <line x1="345" y1="80" x2="345" y2="96" stroke="#2d6a4f" stroke-width="1.5"/>
+      <polygon points="345,80 341,88 349,88" fill="#2d6a4f"/>
+      <text x="345" y="112" text-anchor="middle" font-family="DM Mono, monospace" font-size="10.5" fill="#2d6a4f">this kit lives here</text>
+
+      <!-- content area hint -->
+      <text x="345" y="128" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="#bbb">(project files · terminal · slash commands)</text>
+    </svg>
+    <figcaption style="text-align:center;font-size:11.5px;color:#999;margin-top:8px;font-family:'DM Mono',monospace">One app window, three tabs — Code is the one this whole guide uses</figcaption>
+  </figure>
+
   <div class="tool-card">
     <button class="tool-trigger open" onclick="toggleTool(this,'t-claudeai')">
       <div class="tool-icon">🤖</div>
@@ -221,6 +255,35 @@ code{font-family:'DM Mono',monospace;font-size:12px;background:#f5f5f3;padding:2
         <div class="feat-item"><strong>Terminal access</strong><span>Runs commands on your computer — installing packages, starting servers, deploying to Vercel, running Git. Asks permission before anything significant.</span></div>
         <div class="feat-item"><strong>Slash commands</strong><span>Custom shortcuts you type to trigger automated workflows. Type / to see what's available.</span></div>
         <div class="feat-item"><strong>Permission modes</strong><span>A mode selector controls how much Claude does without asking: Manual (asks every time — safest for beginners), Accept edits, Plan (plans before touching anything), Auto, and Bypass permissions (skips prompts entirely — turn on later in Settings if you want speed over caution).</span></div>
+      </div>
+
+      <figure style="margin:14px 0 4px">
+        <svg viewBox="0 0 560 138" role="img" aria-label="The permission mode selector sits next to the message input at the bottom of the Code tab. Clicking it opens five modes in order of how much Claude does without asking: Manual, Accept edits, Plan, Auto, and Bypass permissions. Manual is selected and recommended as the starting point." style="width:100%;height:auto;max-width:520px;display:block;margin:0 auto">
+          <text x="280" y="16" text-anchor="middle" font-family="DM Mono, monospace" font-size="10" letter-spacing="1" fill="#999">PERMISSION MODE SELECTOR — LIVES BY THE MESSAGE BOX</text>
+
+          <!-- message input bar -->
+          <rect x="20" y="28" width="520" height="40" rx="10" fill="#fff" stroke="#e0ddd8" stroke-width="1"/>
+          <text x="34" y="52" font-family="DM Sans, sans-serif" font-size="12" fill="#bbb">Message Claude Code…</text>
+
+          <!-- mode pill inside the bar -->
+          <rect x="360" y="36" width="94" height="24" rx="12" fill="#f5f5f3" stroke="#ddd" stroke-width="1"/>
+          <text x="407" y="52" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#555">Manual ▾</text>
+
+          <!-- callout down to the dropdown -->
+          <line x1="407" y1="68" x2="407" y2="80" stroke="#999" stroke-width="1.5" stroke-dasharray="3,3"/>
+
+          <!-- dropdown of 5 modes -->
+          <rect x="317" y="80" width="180" height="52" rx="8" fill="#fff" stroke="#e0ddd8" stroke-width="1"/>
+          <rect x="317" y="80" width="180" height="12" fill="#edf7f0"/>
+          <text x="327" y="89" font-family="DM Mono, monospace" font-size="9" fill="#2d6a4f">✓ Manual — asks every time</text>
+          <text x="327" y="103" font-family="DM Sans, sans-serif" font-size="9" fill="#999">Accept edits</text>
+          <text x="327" y="114" font-family="DM Sans, sans-serif" font-size="9" fill="#999">Plan · Auto</text>
+          <text x="327" y="125" font-family="DM Sans, sans-serif" font-size="9" fill="#999">Bypass permissions</text>
+
+          <text x="20" y="122" font-family="DM Mono, monospace" font-size="10" fill="#2d6a4f">← start here</text>
+        </svg>
+        <figcaption style="text-align:center;font-size:11.5px;color:#999;margin-top:8px;font-family:'DM Mono',monospace">Five modes, most-cautious to least — Manual is the safe default while learning</figcaption>
+      </figure>
         <div class="feat-item"><strong>CLAUDE.md</strong><span>A file inside your project that Claude reads at the start of every session. Contains rules and preferences so Claude stays consistent.</span></div>
         <div class="feat-item"><strong>Skills</strong><span>Live in <code>~/.claude/skills/</code> on your computer. Available across all your projects automatically — no upload needed.</span></div>
         <div class="feat-item"><strong>Plugins</strong><span>Installable extensions that add capabilities — Firebase support, security guidance, architecture tools, and more.</span></div>
